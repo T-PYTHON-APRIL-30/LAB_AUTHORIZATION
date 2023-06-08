@@ -20,6 +20,8 @@
 
 ### Models
 
+# Done
+
 - Clinic model should have
 - - name
 - - feature_image
