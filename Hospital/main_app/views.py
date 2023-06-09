@@ -10,7 +10,7 @@ def home_page(request: HttpRequest):
 
 
 def clinics_page(request: HttpRequest):
-    clinic = Clinic.objects.all()[:3]
+    clinic = Clinic.objects.all()
 
     return render(request, 'main_app/clinics.html', {'clinic': clinic})
 
@@ -25,34 +25,71 @@ def search_page(request: HttpRequest):
 def clinics_page_detail(request: HttpRequest, clinic_id):
     age = range(1, 100)
     clinic = Clinic.objects.get(id = clinic_id)
-    appointment = Appointment.objects.all()
+    appointment = Appointment.objects.filter(clinic = clinic)
 
     return render(request, 'main_app/clinics_detail.html', {'clinic': clinic, 'age': age, 'appointment': appointment})
 
 
 def booking_page(request: HttpRequest, clinic_id):
     if request.method == "POST":
+        clinic_object = Clinic.objects.get(id = clinic_id)
         new_appointment = Appointment(
+            clinic = clinic_object,
+            user = request.user,
             case_description = request.POST["case_description"],
             patient_age = request.POST["patient_age"],
             appointment_datetime = request.POST["appointment_datetime"]
         )
         new_appointment.save()
-        return redirect('main_app:clinics_page_detail', clinic_id)
 
-    return render(request, 'main_app/clinics_detail.html')
+    return redirect('main_app:clinics_page_detail', clinic_id = clinic_id)
 
 
 def manager_page(request: HttpRequest):
+    if not request.user.is_staff:
+        return redirect("users_app:no_permission_page")
+
     return render(request, 'main_app/manager.html')
 
 
 def manager_page_add(request: HttpRequest):
-    return render(request, 'main_app/manager_add.html')
+    clinic = Clinic.objects.all()
+
+    if not request.user.is_staff:
+        return redirect("users_app:no_permission_page")
+    
+    if request.method == "POST":
+        new_clinic = Clinic(
+            name = request.POST["name"], 
+            description = request.POST["description"], 
+            department = request.POST["department"], 
+            feature_image = request.FILES["feature_image"]
+        )
+        new_clinic.save()
+        return redirect("main_app:clinics_page")
+
+    return render(request, 'main_app/manager_add.html', {'clinic': clinic})
 
 
 def manager_page_update(request: HttpRequest, clinic_id):
-    return render(request, 'main_app/manager_update.html')
+    clinics = Clinic.objects.all()
+    clinic = Clinic.objects.get(id = clinic_id)
+
+    if not request.user.is_staff:
+        return redirect("users_app:no_permission_page")
+
+    if request.method == "POST":
+        clinic.name = request.POST["name"]
+        clinic.description = request.POST["description"]
+        clinic.department = request.POST["department"]
+        
+        if "image" in request.FILES:
+            clinic.feature_image = request.FILES["feature_image"]
+        clinic.save()
+
+        return redirect("main_app:clinics_page_detail", clinic_id = clinic.id)
+
+    return render(request, 'main_app/manager_update.html', {'clinic': clinic, 'clinics': clinics})
 
 
 def manager_page_appointments(request: HttpRequest):

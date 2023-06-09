@@ -34,17 +34,22 @@
                 </div>
         
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2">Features</a></li>
-                    <li><a href="#" class="nav-link px-2">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2">About</a></li>
+                    <li><a href="{% url 'main_app:home_page' %}" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="{% url 'main_app:clinics_page' %}" class="nav-link px-2">Clinics</a></li>
+                    {% if request.user.is_staff %}
+                        <li><a href="{% url 'main_app:manager_page' %}" class="nav-link px-2">Manager</a></li>
+                    {% endif %}
                 </ul>
             
-                <div class="col-md-3 text-end">
-                    <a href="{% url 'users_app:register_page' %}" class="btn btn-outline-primary me-2">Register</a>
-                    <a href="{% url 'users_app:login_page' %}" class="btn btn-primary">Log in</a>
-                </div>
+                {% if request.user.is_authenticated %}
+                    <h5 class="m-0 p-0">Welcome {{ request.user.username }}</h5>
+                    <a href="{% url 'users_app:logout_page' %}" class="btn btn-danger">Log Out</a>
+                {% else %}
+                    <div class="col-md-3 text-end">
+                        <a href="{% url 'users_app:register_page' %}" class="btn btn-outline-primary me-2">Register</a>
+                        <a href="{% url 'users_app:login_page' %}" class="btn btn-primary">Log in</a>
+                    </div>
+                {% endif %}
             </header>
         </div>
 
@@ -65,11 +70,11 @@
                 </a>
             
                 <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                    <li><a href="{% url 'main_app:home_page' %}" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="{% url 'main_app:clinics_page' %}" class="nav-link px-2">Clinics</a></li>
+                    {% if request.user.is_staff %}
+                        <li><a href="{% url 'main_app:manager_page' %}" class="nav-link px-2">Manager</a></li>
+                    {% endif %}
                 </ul>
             </footer>
         </div>

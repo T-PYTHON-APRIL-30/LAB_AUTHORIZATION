@@ -1,0 +1,17 @@
+{% extends 'main_app/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container col-xxl-8 px-4 py-5 mb-5">
+    <h2>Clinics</h2>
+    <div class="d-flex mb-5">
+        <a href="{% url 'main_app:clinics_page' %}" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="rcp66">All Clinic</a>
+        <a href="{% url 'main_app:manager_page_add' %}" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="rcp66">Add Clinic</a>
+    </div>
+    <h2>Appointments</h2>
+    <div class="d-flex mb-5">
+        <a href="{% url 'main_app:manager_page_appointments' %}" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="rcp66">All Appointments</a>
+        <a href="{% url 'main_app:appointments_page_add' %}" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="rcp66">Add Appointment</a>
+    </div>
+</div>
+{% endblock %}

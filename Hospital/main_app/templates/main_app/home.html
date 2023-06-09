@@ -15,8 +15,7 @@
                     healthcare staff and medical equipment.
                 </p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a href="" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="rcp66">Primary</a>
-                    <a href="" class="btn btn-outline-secondary btn-lg px-4" fdprocessedid="rpem1s">Default</a>
+                    <a href="{% url 'main_app:clinics_page' %}" class="btn btn-primary btn-lg px-4 me-md-2" fdprocessedid="rcp66">Appointments</a>
                 </div>
             </div>
         </div>
@@ -31,15 +30,21 @@
                 <span class="material-symbols-outlined">arrow_forward_ios</span>
             </a>
         </div>
-        <div class="card" style="width: 18rem;">
-            {% for clinic in clinic %}
-                <img src="{{clinic.feature_image.url}}" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{clinic.name}}</h5>
-                    <p class="card-text">{{clinic.description|truncatewords:25}}</p>
-                    <a href="{% url 'main_app:clinics_page_detail' clinic.id %} " class="btn btn-primary">More Detail</a>
+        <div class="d-flex flex-column">
+            <div class="row">
+                {% for clinic in clinic %}
+                <div class="col-4 g-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{clinic.feature_image.url}}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{clinic.name}}</h5>
+                            <p class="card-text">{{clinic.description|truncatewords:25}}</p>
+                            <a href="{% url 'main_app:clinics_page_detail' clinic.id %} " class="btn btn-primary">More Detail</a>
+                        </div>
+                    </div>
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

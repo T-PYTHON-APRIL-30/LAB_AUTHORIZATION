@@ -19,7 +19,7 @@ class Clinic(models.Model):
     established_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Appointment(models.Model):
@@ -32,4 +32,4 @@ class Appointment(models.Model):
     is_attended = models.BooleanField(default = False)
 
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username} on {self.clinic}"
