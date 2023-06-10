@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Clinic, Appointment
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'clinic_app/home.html')
+    clinics = Clinic.objects.all()
+    return render(request, 'clinic_app/home.html', {'clinics':clinics})

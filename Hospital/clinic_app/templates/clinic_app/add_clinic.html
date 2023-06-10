@@ -1,0 +1,46 @@
+{% extends 'clinic_app/base.html' %}
+
+{% block content %}
+
+<h1 style="text-align: center">Add Clinic</h1>
+<form method="POST" style="text-align: center">
+    {% csrf_token %}
+
+    <div>
+        <label for="title">Name:</label><br>
+        <input name="name" type="text">
+    </div>
+    <br>
+    <div>
+        <label for="content">Description:</label><br>
+        <textarea name="description"></textarea>
+    </div>
+    <br>
+    <div>
+        <label for="feature_image">Feature Image:</label>
+        <input type="file" name="feature_image">
+    </div>
+    <br>
+    <div>
+        <label for="department">Department:</label>
+        <select name="department">
+            <option value="Heart Center">Heart Center</option>
+            <option value="Neuroscience Center">Neuroscience Center</option>
+            <option value="Obesity Center">Obesity Center</option>
+            <option value="Eye Center">Eye Center</option>
+            <option value="Orthopedic Center">Orthopedic Center</option>
+            <option value="Pediatric Center">Pediatric Center</option>
+        </select>
+ƒ    </div>
+    <br>
+    <div>
+        <label for="birthdaytime">Established at:</label><br>
+        <input type="date" name="established_at">
+    </div>
+
+    <br>
+    <button type="submit">Add Clinic</button>
+</form>
+<br>
+
+{% endblock %}
