@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+
+    <title>Document</title>
+    <style>
+        body{
+            background-color:hsl(218, 41%, 19%) ;
+            color: whitesmoke;
+        }
+       
+        .background-radial-gradient {
+          background-color: hsl(218, 41%, 15%);
+          background-image: radial-gradient(650px circle at 0% 0%,
+              hsl(218, 41%, 35%) 15%,
+              hsl(218, 41%, 30%) 35%,
+              hsl(218, 41%, 20%) 75%,
+              hsl(218, 41%, 19%) 80%,
+              transparent 100%),
+            radial-gradient(1250px circle at 100% 100%,
+              hsl(218, 41%, 45%) 15%,
+              hsl(218, 41%, 30%) 35%,
+              hsl(218, 41%, 20%) 75%,
+              hsl(218, 41%, 19%) 80%,
+              transparent 100%);
+        }
+      </style>
+</head>
+<body>
+<!-- Section: Design Block -->
+<section class="background-radial-gradient mb-10">
+
+  
+    <!-- Navbar -->
+    <nav
+      class="relative flex w-full items-center justify-between bg-white py-2 shadow-sm shadow-neutral-700/10 dark:bg-neutral-800 dark:shadow-black/30 lg:flex-wrap lg:justify-start"
+      data-te-navbar-ref>
+      <!-- Container wrapper -->
+      <div class="flex w-full flex-wrap items-center justify-between px-6">
+        <div class="flex items-center">
+          <!-- Toggle button -->
+          
+          <button
+            class="block border-0 bg-transparent py-2 pr-2.5 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
+            type="button" data-te-collapse-init data-te-target="#navbarSupportedContentY"
+            aria-controls="navbarSupportedContentY" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="[&>svg]:w-7">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-7 w-7">
+                <path fill-rule="evenodd"
+                  d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+                  clip-rule="evenodd" />
+                  
+              </svg>
+            </span>
+            
+          </button>
+          
+
+  
+          <!-- Navbar Brand -->
+          <a class="text-primary dark:text-primary-400 flex" href="#!">
+            <span class="[&>svg]:ml-2 [&>svg]:mr-3 [&>svg]:h-6 [&>svg]:w-6 [&>svg]:lg:ml-0">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+              </svg>
+              
+            </span>
+            <h1 class="">hospitalne</h1>
+          </a>
+        </div>
+        <form action="{% url 'hospital_app:search_page' %} " method="get" class="ml-5" style="width: 30%;">   
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+            <div class="relative">
+                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input type="search" name="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search clinic" required>
+                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+            </div>
+        </form>
+  
+        <!-- Collapsible wrapper -->
+        <div class="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto"
+          id="navbarSupportedContentY" data-te-collapse-item>
+          <!-- Left links -->
+          <ul class="mr-auto lg:flex lg:flex-row" data-te-navbar-nav-ref>
+            {% if request.user.is_staff %}
+            <li data-te-nav-item-ref>
+              <a class="block py-2 pr-2 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-600 focus:text-neutral-600 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 dark:disabled:text-white/30 lg:px-2 [&.active]:text-black/80 dark:[&.active]:text-white/80"
+                href="{% url 'hospital_app:manager_page' %}" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light"
+                disabled>manager Dashboard</a>
+            </li>
+            <li data-te-nav-item-ref>
+              <a class="block py-2 pr-2 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-600 focus:text-neutral-600 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 dark:disabled:text-white/30 lg:px-2 [&.active]:text-black/80 dark:[&.active]:text-white/80"
+                href="{% url 'hospital_app:add_clinics' %}" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">add clinics</a>
+            </li>
+            {% endif %}
+            <li class="mb-2 lg:mb-0" data-te-nav-item-ref>
+              <a class="block py-2 pr-2 text-neutral-500 transition duration-150 ease-in-out hover:text-neutral-600 focus:text-neutral-600 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 dark:disabled:text-white/30 lg:px-2 [&.active]:text-black/80 dark:[&.active]:text-white/80"
+                href="{% url 'hospital_app:index_page' %}" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">home</a>
+            </li>
+          </ul>
+          <!-- Left links -->
+          
+        </div>
+        <!-- Collapsible wrapper -->
+  
+        <!-- Right elements -->
+        <div class="my-1 flex items-center lg:my-0 lg:ml-auto">
+            {% if request.user.is_authenticated %}
+            <h2 
+            class="mr-2 inline-block rounded px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 dark:text-primary-400 dark:hover:bg-neutral-700 dark:hover:bg-opacity-60 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+            >
+            welcome , {{ request.user.first_name }}
+        </h2>
+        <a href="{% url 'hospital_app:log_out' %}"><button type="button" style="background-color: rgb(220, 76, 76);"
+        class="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+        data-te-ripple-init data-te-ripple-color="light">
+        log out 
+      </button></a>
+              {% else %}
+            
+          <a href="{% url 'hospital_app:sign_in' %}"><button type="button"
+            class="mr-2 inline-block rounded px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 dark:text-primary-400 dark:hover:bg-neutral-700 dark:hover:bg-opacity-60 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+            data-te-ripple-init data-te-ripple-color="light">
+            Login
+          </button></a>
+          <a href="{% url 'hospital_app:sign_up' %}">
+          <button type="button" style="background-color: rgb(76, 76, 220);"
+            class="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            data-te-ripple-init data-te-ripple-color="light">
+            Sign up 
+          </button>
+        </a>
+        </div>
+        {% endif %}
+       
+        <!-- Right elements -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    {% block base %}
+      
+    {% endblock base %}
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
+ 
+  {% block content %}
+    
+  {% endblock content %}
+
+
+
+
+
+
+
+
+
+
+  <footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="" class="hover:underline" target="_blank"> " " </a>. All Rights Reserved.
+    </span>
+    <ul class="flex flex-wrap items-center mt-3 sm:mt-0">
+        <li>
+            <a href="#" class="mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400">About</a>
+        </li>
+        <li>
+            <a href="#" class="mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400">Privacy Policy</a>
+        </li>
+        <li>
+            <a href="#" class="mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400">Licensing</a>
+        </li>
+        <li>
+            <a href="#" class="text-sm text-gray-500 hover:underline dark:text-gray-400">Contact</a>
+        </li>
+    </ul>
+</footer>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

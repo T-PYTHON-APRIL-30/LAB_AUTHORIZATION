@@ -24,7 +24,7 @@
 - - name
 - - feature_image
 - - description
-- - department (use text choices field ) choices are : "Heart Center", "Neuroscience Center", "Obesity Center", "Eye Center", "Orthopedic Center", "Pediatric Center"
+- - department (use text  choices field ) choices are : "Heart Center", "Neuroscience Center", "Obesity Center", "Eye Center", "Orthopedic Center", "Pediatric Center"
 - - established_at
 
 

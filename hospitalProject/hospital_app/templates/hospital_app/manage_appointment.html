@@ -1,0 +1,92 @@
+{% extends 'hospital_app/base.html' %}
+{% block content %}
+
+
+<div  class="flex flex-col items-center mb-15 "> 
+<div  style="width:700px" class="flex flex-col items-center p-5  border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 ">
+    
+    <div style="width:100%" class="border-b border-gray-900/10 pb-12">
+        <h2 class="text-base font-semibold leading-7 " style="color: whitesmoke;">your appointments</h2>
+        <h2 class="text-base font-semibold leading-7 " style="color: whitesmoke;">{{clinic.name}}</h2>
+        <img src="{{clinic.image.url}}" style="  height: 300px; border-radius: 10px;" alt="" srcset="">
+  
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label for="first-name" class="block text-sm font-medium leading-3  " style="color: whitesmoke;"> manager name </label>
+            <h1 style="color: whitesmoke;">{{request.user.first_name}}</h1>
+          </div>
+          <div class="sm:col-span-3" >
+            <label for="first-name" class="block text-sm font-medium leading-3  " style="color: whitesmoke;"> clinic name</label>
+           <h1 style="color: whitesmoke;">{{clinic.name}}</12>
+          </div>
+  
+   
+          <div class="sm:col-span-3" >
+            <label for="department" class="block text-sm font-medium leading-6  " style="color: whitesmoke;">department</label>
+            <h1 style="color: whitesmoke;">{{clinic.department}}</h1>
+          </div>
+        </div>
+        {% for appointment in appointments  %}
+        <div  class="mt-10 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 ">
+            
+              
+           
+            <div class="flex flex-col justify-between p-4 leading-normal " >
+                <h5 class="mb-2 text-2xl  font-bold tracking-tight text-gray-900 dark:text-white">name: {{appointment.user.first_name}}</h5>
+                
+                <h5 class="mb-2 text-2xl p-8 font-bold tracking-tight text-gray-900 dark:text-white">case description : {{appointment.case_description}}</h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">time : {{appointment.appointment_datetime}}</p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">age : {{appointment.patient_age}}</p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Clinic : {{appointment.clinic.name}}</p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">is attended : {% if appointment.is_attended  %} yes {% else %} not yet {% endif %} </p>
+                <div  class="flex ">
+                <a href="{% url 'hospital_app:update_appointent' appointment_id=appointment.id  clinic_id=clinic.id %}"><button
+                    type="button"
+                    class="inline-block m-1 rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                    data-te-ripple-init
+                    style ="background-color: #3b71ca;"
+                    data-te-ripple-color="light">
+                    update appointment 
+                  </button>
+                  </a>
+                  <a href="{% url 'hospital_app:patient_attended' appointment_id=appointment.id  clinic_id=clinic.id %}"><button
+                    type="button"
+                    class="inline-block m-1 rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                    data-te-ripple-init
+                    style ="background-color: #3BCA6F;"
+                    data-te-ripple-color="light">
+                    patient attended
+                  </button>
+                  </a>
+                  <a href="{% url 'hospital_app:patient_notattended' appointment_id=appointment.id  clinic_id=clinic.id %}"><button
+                    type="button"
+                    class="inline-block m-1 rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                    data-te-ripple-init
+                    style ="background-color: #CA3B66;"
+                    data-te-ripple-color="light">
+                     not attended
+                  </button>
+                  </a>
+                  <a href="{% url 'hospital_app:delete_appointent' appointment_id=appointment.id  clinic_id=clinic.id %}"><button
+                    type="button"
+                    class="inline-block m-1 rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                    data-te-ripple-init
+                    style ="background-color: #F90000;"
+                    data-te-ripple-color="light">
+                    delele the appointment
+                  </button>
+                  </a></div>
+
+                  
+              
+            </div>
+        </div>
+        {% endfor %}
+  </div>
+  </div>
+
+</div>
+  
+
+
+{% endblock content %}
