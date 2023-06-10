@@ -1,0 +1,27 @@
+{% extends 'clinics_app/base.html'%}
+
+{% block title%} Sign in page {%endblock%}
+{% block content %} 
+
+        {% if msg %}
+        <p class="text-danger">{{msg}}</p>
+        {% endif %}
+        <form action="{%url 'accounts:sign_in'%}" method="POST">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        
+            <div class="form-floating">
+              <input type="text" class="form-control" id="floatingInput"  name="username">
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+              <label for="floatingPassword">Password</label>
+            </div>
+        
+            <div class="checkbox mb-3">
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            </div>
+            <a href="{% url 'accounts:register' %}">Sign up</a>
+          </form>
+          {% endblock %}

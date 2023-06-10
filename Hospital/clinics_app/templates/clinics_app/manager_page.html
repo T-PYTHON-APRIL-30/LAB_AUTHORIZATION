@@ -1,0 +1,15 @@
+{% extends "clinics_app/base.html" %} 
+
+{% block title %}
+Manager Page
+{% endblock %}
+
+
+{% block content %}
+<div class="row row-cols-sm-4 p-4 me-5 text-center d-flex justify-content-center">
+    <a href="{% url 'clinics_app:clinic_manager_page' %}" type="button" class=" btn btn-light shadow">Clinics</a>
+</div>
+<div class="row row-cols-sm-4 p-4 me-5 text-center d-flex justify-content-center">
+    <a href="{% url 'clinics_app:appointment_manager_page' %}" type="button" class=" btn btn-light shadow">appointment</a>
+</div>
+{% endblock %}
