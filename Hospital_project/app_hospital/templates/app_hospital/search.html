@@ -1,0 +1,21 @@
+{% extends "app_hospital/base.html" %}
+
+
+
+{% block searchword %}
+<h3>Search results for <span class="text-success">{{request.GET.search}}</span></h3>
+{%endblock%}
+
+{%block detial%}
+
+{% for clinc in clinic %}
+      <div class="flex flex-col md:flex-row  text-center md:-mx-4 ">
+        <div class="bg-white rounded-lg shadow-lg p-8 md:mx-4 justify-center">
+        <img class="mx-auto mb-6" width="85" height="80" viewBox="0 0 85 80"
+         src="{{ clinc.feature_image.url }}">
+          <h4 class="text-xl font-bold"> {{ clinc.name }}</h4>
+          <!-- <p class="mt-1">{{clinics.description}}</p> -->
+          <a href="{% url 'app_hospital:one_clinic_detials' clinc.id %}" class="block mt-4">Read More</a>
+        </div>
+ {%endfor%}
+{%endblock%}
