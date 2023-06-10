@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html'%}
+{% block title %} Sign-in {% endblock %}
+
+{% block content %}
+
+<h2>Sign-in</h2>
+
+{% if msg %}
+<p class="text-danger">{{msg}}</p>
+{% endif %}
+<form action="{% url 'accounts:signin' %}" method="POST">
+    {% csrf_token %}
+
+    <div>
+        <input type="text" placeholder="Username" name="username">
+        <label for="floatingInput">Username</label>
+    </div>
+
+    <div>
+        <input type="password" placeholder="Password" name="password">
+        <label for="floatingPassword">Password</label>
+    </div>
+
+    <button type="submit">Sign in</button>
+</form>
+
+{% endblock %}

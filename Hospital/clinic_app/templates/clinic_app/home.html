@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
+{% extends 'accounts/base.html'%}
+{% block title %} Home {% endblock %}
 
-<head>
-    <title>Hoem</title>
-</head>
-<body>
+{% block content %}
 
-    <h1>Clinic Page</h1>
+<h1>Clinis:</h1>
+<a href="{% url 'accounts:signin' %}">Sign in</a>
 
-</body>
-
-</html>
+{% endblock %}
