@@ -1,0 +1,28 @@
+{% extends "clinics_app/base.html" %} 
+
+{% block title %}
+Clinic Detail Page
+{% endblock %}
+
+{% block content %}
+<div class=" p-5 m-auto ">
+    <div class="col ">
+<div class="card mb-3 shadow" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4 p-3">
+      <img src="{ clinics.feature_image.url }" class="img-fluid rounded shadow" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{clinics.clinic_name}}</h5>
+        <p class="card-text">{{ clinics.description }}</p>
+        <a href="#" class="btn shadow">Make a appointment</a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>
+<div class="col d-flex justify-content-center">
+
+{% endblock %}

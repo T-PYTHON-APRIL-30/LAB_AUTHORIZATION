@@ -1,0 +1,41 @@
+{% extends "clinics_app/base.html" %} 
+
+{% block title %}
+Clinic Manager Page
+{% endblock %}
+
+
+{% block content %}
+<div class="row row-cols-sm-4 p-4 me-5 text-center d-flex justify-content-center">
+    <a href="{% url 'clinics_app:add_clinic_page' %}" type="button" class=" btn btn-light shadow">Add Clinic</a>
+</div>
+
+
+<div class="container row m-auto justify-content-center" >
+{% for clinic in clinics %}
+
+<div class="card m-2 shadow" style="max-width: 540px;">
+  <div class="row g-0 ">
+    
+    <div class="col-md-7">
+      <div class="card-body">
+        <h5 class="card-title" style="height:30px;">{{ clinic.clinic_name }} <span style="font-size: 60%; color: #facc15;">{{ clinic.department }}</span></h5>
+        <p class="card-text">{{ clinic.description }}</p>
+        <p class="card-text">{{ clinic.established_at }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-4 p-2 m-auto  ">
+      <img src="{ clinic.feature_image.url }" class="img-fluid rounded shadow-lg" alt="{{ clinic.clinic_name }} logo">
+    </div>
+
+  </div>
+  <div class="btn-group shadow m-2" role="group" aria-label="Basic outlined example">    
+        <a  type="button" class="btn btn-outline-danger" href="{% url 'clinics_app:delete_clinic_page' clinic.id %}" >Delete</a>
+        <a  type="submit" class="btn btn-outline-primary" href="{% url 'clinics_app:update_clinic_page' clinic.id %}" >Update</a>
+    </div>
+</div>
+
+{%endfor%}
+  </div>
+{% endblock %}

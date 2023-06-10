@@ -7,4 +7,16 @@ Home Page
 
 {% block content %}
 
+<div class=" row m-auto justify-content-center g-3" >
+{% for clinic in clinics %}
+<div class="card" style="width: 14rem;">
+  <img src="{ clinic.feature_image.url }" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{clinic.clinic_name}}</h5>
+    <a href="{% url 'clinics_app:clinic_detail_page' clinic.id %}" class="btn btn-primary">More Details</a>
+  </div>
+</div>
+{% endfor %}
+</div>
+
 {% endblock %}

@@ -1,0 +1,48 @@
+{% extends "clinics_app/base.html" %} 
+
+{% block title %}
+Update Clinic Page
+{% endblock %}
+
+
+{% block content %}
+
+    <form action="{% url 'clinics_app:update_clinic_page' clinic.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3 mt-3">
+            <label for="exampleFormControlInput1" class="form-label">Clinic name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in clinic name" name="clinic_name" value="{{clinic.clinic_name}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">About the clinic</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="fill in description" name="description">{{clinic.description}}</textarea>
+        </div>
+
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">department</label>
+            <select class="form-select" name="department" id="inputGroupSelect01">
+                    <option selected>Choose...</option>
+                {% for clinic in clinics %}
+                    <option value="{{clinic.department}}">{{clinic.department}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Upload image</label>
+            <input type="file" name="feature_image" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Established at</label>
+            <input type="date" name="established_at" value="{{iso_date}}"/>
+        </div>
+
+        
+        
+        <div class="mb-3">
+            <input type="submit" value="Update Clinic" class="btn btn-light shadow" />
+        </div>
+    </form>
+{% endblock %}
