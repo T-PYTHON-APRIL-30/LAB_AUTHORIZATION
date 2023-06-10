@@ -3,7 +3,21 @@
 
 {% block content %}
 
-<h1>Clinis:</h1>
-<a href="{% url 'accounts:signin' %}">Sign in</a>
+<h1 style="text-align: center">Available Clinis</h1>
+
+<div style="text-align: center">
+    <a href="{% url 'accounts:signin' %}">Sign in</a>
+</div>
+
+<div style="text-align: center">
+    {% for clinic in clinics %}
+    <br>
+    <h4 style="color: orangered">{{ clinic.name }}</h4>
+    <img >{{ clinic.feature_image }}</img>
+    <p>Description: {{ clinic.description }}</p>
+    <p>Department: {{ clinic.department }}</p>
+    <p>Established at: {{ clinic.established_at }}</p>
+    {% endfor %}
+</div>
 
 {% endblock %}
