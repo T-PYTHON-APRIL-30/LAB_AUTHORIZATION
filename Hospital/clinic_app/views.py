@@ -21,3 +21,13 @@ def add_clinic(request:HttpRequest):
         return redirect('clinic_app:home') 
     else: 
         return render(request, 'clinic_app/add_clinic.html')
+    
+def clinic_details(request:HttpRequest, clinic_id):
+    clinic = Clinic.objects.get(id=clinic_id)
+    try:
+        if request.method == "POST":
+            pass 
+    except:
+        return render(request, 'clinic_app/no_clinic.html')
+    return render(request, 'clinic_app/clinic_details.html', {"clinic":clinic})
+

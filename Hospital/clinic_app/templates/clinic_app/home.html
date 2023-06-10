@@ -17,6 +17,9 @@
     <p>Description: {{ clinic.description }}</p>
     <p>Department: {{ clinic.department }}</p>
     <p>Established at: {{ clinic.established_at }}</p>
+    <div> 
+        <a href="{% url 'clinic_app:clinic_details' post.id %}">details</a>
+      </div>
     {% endfor %}
 </div>
 
