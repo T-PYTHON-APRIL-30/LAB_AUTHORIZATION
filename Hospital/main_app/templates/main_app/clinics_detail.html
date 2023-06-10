@@ -33,8 +33,17 @@
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Choose Date:</label>
-                    <input type="date" name="appointment_datetime"/>
+                    <input type="date" name="date"/>
                 </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">appointment time:</label>
+                    <input type="time" name="time" />
+                </div>
+
+                {% if msg %}
+                    <p class="text-danger">{{msg}}</p>
+                {% endif %}
 
                 <button class="btn btn-outline-primary" type="submit">Booking</button>
             </form>
