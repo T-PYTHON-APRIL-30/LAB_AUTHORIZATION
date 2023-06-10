@@ -47,14 +47,14 @@ def booking_page(request: HttpRequest, clinic_id):
 
 
 def manager_page(request: HttpRequest):
-    if not (request.user.is_staff and request.user.has_perm("main_app.viwe_clinic")):
+    if not (request.user.is_staff):
         return redirect("users_app:no_permission_page")
 
     return render(request, 'main_app/manager.html')
 
 
 def manager_page_add(request: HttpRequest):
-    if not (request.user.is_staff and request.user.has_perm("main_app.manager_page_add")):
+    if not (request.user.is_staff and request.user.has_perm("main_app.add_clinic")):
         return redirect("users_app:no_permission_page")
 
     clinic = Clinic.objects.all()
@@ -73,7 +73,7 @@ def manager_page_add(request: HttpRequest):
 
 
 def manager_page_update(request: HttpRequest, clinic_id):
-    if not (request.user.is_staff and request.user.has_perm("main_app.manager_page_update")):
+    if not (request.user.is_staff and request.user.has_perm("main_app.change_clinic")):
         return redirect("users_app:no_permission_page")
     
     clinics = Clinic.objects.all()
@@ -94,7 +94,7 @@ def manager_page_update(request: HttpRequest, clinic_id):
 
 
 def manager_page_appointments(request: HttpRequest):
-    if not (request.user.is_staff and request.user.has_perm("main_app.manager_page_appointments")):
+    if not (request.user.is_staff):
         return redirect("users_app:no_permission_page")
 
     appointment = Appointment.objects.all()
@@ -103,7 +103,7 @@ def manager_page_appointments(request: HttpRequest):
 
 
 def appointments_page_add(request: HttpRequest):
-    if not (request.user.is_staff and request.user.has_perm("main_app.appointments_page_add")):
+    if not (request.user.is_staff and request.user.has_perm("main_app.add_appointment")):
         return redirect("users_app:no_permission_page")
     
     age = range(1, 100)
@@ -128,7 +128,7 @@ def appointments_page_add(request: HttpRequest):
 
 
 def appointments_page_delete(request: HttpRequest, appointment_id):
-    if not (request.user.is_staff and request.user.has_perm("main_app.appointments_page_delete")):
+    if not (request.user.is_staff and request.user.has_perm("main_app.delete_appointment")):
         return redirect("users_app:no_permission_page")
     
     appointment = Appointment.objects.get(id = appointment_id)
@@ -138,7 +138,7 @@ def appointments_page_delete(request: HttpRequest, appointment_id):
 
 
 def appointments_page_update(request: HttpRequest, appointment_id):
-    if not (request.user.is_staff and request.user.has_perm("main_app.appointments_page_update")):
+    if not (request.user.is_staff and request.user.has_perm("main_app.change_appointment")):
         return redirect("users_app:no_permission_page")
 
     appointment = Appointment.objects.get(id = appointment_id)
