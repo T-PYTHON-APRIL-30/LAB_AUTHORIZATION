@@ -17,6 +17,6 @@ urlpatterns = [
     
     path('manager/appointments/', views.manager_page_appointments, name = 'manager_page_appointments'),
     path('manager/appointments/add/', views.appointments_page_add, name = 'appointments_page_add'),
-    path('manager/appointments/delete/<clinic_id>/', views.appointments_page_delete, name = 'appointments_page_delete'),
-    path('manager/appointments/update/<clinic_id>/', views.appointments_page_update, name = 'appointments_page_update')
+    path('manager/appointments/delete/<appointment_id>/', views.appointments_page_delete, name = 'appointments_page_delete'),
+    path('manager/appointments/update/<appointment_id>/', views.appointments_page_update, name = 'appointments_page_update')
 ]

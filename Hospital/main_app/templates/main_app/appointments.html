@@ -2,5 +2,50 @@
 {% load static %}
 
 {% block content %}
-<div class="container col-xxl-8 px-4 py-5"></div>
+    <div class="container col-xxl-8 px-4 py-5">
+        <h2>All Appointments</h2>
+        <div class="table-responsive small">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Patient name</th>
+                        <th scope="col">Patient age</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Clinic</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Attendance</th>
+                        <th scope="col">Patient case</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointment %}
+                        <tr>
+                            <td>{{appointment.id}}</td>
+                            <td>{{appointment.user.username}}</td>
+                            <td>{{appointment.patient_age}}</td>
+                            <td>{{appointment.clinic.department}}</td>
+                            <td>{{appointment.clinic.name}}</td>
+                            <td>{{appointment.appointment_datetime|date}}</td>
+                            <td>{{appointment.appointment_datetime|time}}</td>
+                            {% if appointment.is_attended %}
+                                <td>Present</td>
+                            {% else %}
+                                <td>Absent</td>
+                            {% endif %}
+                            <td>{{appointment.case_description}}</td>
+                            <td>
+                                <a href="{% url 'main_app:appointments_page_update' appointment.id %}" class="btn btn-warning" fdprocessedid="rcp66">Update</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'main_app:appointments_page_delete' appointment.id %}" class="btn btn-danger" fdprocessedid="rcp66">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

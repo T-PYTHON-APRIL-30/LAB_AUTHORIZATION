@@ -18,15 +18,24 @@
     <!-- clinics section -->
     <div class="container col-xxl-8 px-4 py-5 mb-5">
         <h3>Search results for <span class="text-success">{{request.GET.search}}</span></h3>
-        <div class="card" style="width: 18rem;">
-            {% for clinic in clinic %}
-                <img src="{{clinic.feature_image.url}}" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{clinic.name}}</h5>
-                    <p class="card-text">{{clinic.description|truncatewords:25}}</p>
-                    <a href="{% url 'main_app:clinics_page_detail' clinic.id %} " class="btn btn-primary">More Detail</a>
+        <div class="d-flex flex-column">
+            <div class="row">
+                {% for clinic in clinic %}
+                <div class="col-4 g-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{clinic.feature_image.url}}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{clinic.name}}</h5>
+                            <p class="card-text">{{clinic.description|truncatewords:25}}</p>
+                            <a href="{% url 'main_app:clinics_page_detail' clinic.id %} " class="btn btn-primary">More Detail</a>
+                            {% if request.user.is_staff %}
+                                <a href="{% url 'main_app:manager_page_update' clinic.id %} " class="btn btn-warning">Update</a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

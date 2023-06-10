@@ -2,5 +2,53 @@
 {% load static %}
 
 {% block content %}
-<div class="container col-xxl-8 px-4 py-5"></div>
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="d-flex align-items-center py-4">
+            <main class="form-signin w-100 m-auto">
+                <div class="container col-xxl-8 px-4 py-5 mb-5">
+                    <form action="{% url 'main_app:appointments_page_add' %}" method="POST" class="w-50 align-items-center justify-content-center">
+                        {% csrf_token %}
+                        <h1 class="h3 mb-3 fw-normal">Add appointment</h1>
+
+                        <label for="exampleFormControlInput1" class="form-label">patient name:</label>
+                        <select name="user" class="form-select" aria-label="Default select example">
+                            <option selected>patient name</option>
+                            {% for user in user %}
+                                <option value="{{user.id}}">{{user.username}}</option>
+                            {% endfor %}
+                        </select>
+            
+                        <label for="exampleFormControlInput1" class="form-label">patient age:</label>
+                        <select name="patient_age" class="form-select form-select-sm w-25 mb-3" aria-label=".form-select-sm example">
+                            <option selected>patient age</option>
+                            {% for i  in age %}
+                                <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label for="exampleFormControlInput1" class="form-label">clinic name:</label>
+                        <select name="clinic" class="form-select" aria-label="Default select example">
+                            <option selected>clinic name</option>
+                            {% for clinic in clinic %}
+                                <option value="{{clinic.id}}">{{clinic.name}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">appointment description</span>
+                            <textarea class="form-control" name="case_description" aria-label="With textarea"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">appointment datetime</label>
+                            <input type="date" name="appointment_datetime"/>
+                        </div>
+                        <br>
+            
+                        <button class="btn btn-primary w-100 py-2" type="submit" fdprocessedid="1isj6h">Add appointment</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
 {% endblock %}

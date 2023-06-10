@@ -38,6 +38,9 @@
                     <li><a href="{% url 'main_app:clinics_page' %}" class="nav-link px-2">Clinics</a></li>
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'main_app:manager_page' %}" class="nav-link px-2">Manager</a></li>
+                        <li><a href="{% url 'main_app:manager_page_add' %}" class="nav-link px-2">Add Clinics</a></li>
+                        <li><a href="{% url 'main_app:manager_page_appointments' %}" class="nav-link px-2">Appointmints</a></li>
+                        <li><a href="{% url 'main_app:appointments_page_add' %}" class="nav-link px-2">Add Appointmint</a></li>
                     {% endif %}
                 </ul>
             
@@ -74,6 +77,9 @@
                     <li><a href="{% url 'main_app:clinics_page' %}" class="nav-link px-2">Clinics</a></li>
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'main_app:manager_page' %}" class="nav-link px-2">Manager</a></li>
+                        <li><a href="{% url 'main_app:manager_page_add' %}" class="nav-link px-2">Add Clinics</a></li>
+                        <li><a href="{% url 'main_app:manager_page_appointments' %}" class="nav-link px-2">Appointmints</a></li>
+                        <li><a href="{% url 'main_app:appointments_page_add' %}" class="nav-link px-2">Add Appointmint</a></li>
                     {% endif %}
                 </ul>
             </footer>

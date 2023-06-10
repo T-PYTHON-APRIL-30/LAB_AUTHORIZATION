@@ -53,25 +53,25 @@
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">attendance</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">attendance</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for appointment in appointment %}
                             <tr>
-                            <td>{{appointment.id}}</td>
-                            <td>{{appointment.clinic.department}}</td>
-                            <td>{{appointment.appointment_datetime|date}}</td>
-                            <td>{{appointment.appointment_datetime|time}}</td>
-                            {% if appointment.is_attended %}
-                                <td>Present</td>
-                            {% else %}
-                                <td>Absent</td>
-                            {% endif %}
+                                <td>{{appointment.id}}</td>
+                                <td>{{appointment.clinic.department}}</td>
+                                <td>{{appointment.appointment_datetime|date}}</td>
+                                <td>{{appointment.appointment_datetime|time}}</td>
+                                {% if appointment.is_attended %}
+                                    <td>Present</td>
+                                {% else %}
+                                    <td>Absent</td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                     </tbody>

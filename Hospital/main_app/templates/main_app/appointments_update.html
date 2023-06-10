@@ -1,0 +1,43 @@
+{% extends 'main_app/index.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="d-flex align-items-center py-4">
+            <main class="form-signin w-100 m-auto">
+                <div class="container col-xxl-8 px-4 py-5 mb-5">
+                    <form action="{% url 'main_app:appointments_page_update' appointment.id %}" method="POST" class="w-50 align-items-center justify-content-center">
+                        {% csrf_token %}
+                        <h1 class="h3 mb-3 fw-normal">Update {{appointment.user.username}} appointment</h1>
+            
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">appointment description</span>
+                            <textarea class="form-control" name="case_description" aria-label="With textarea">{{appointment.case_description}}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">appointment datetime</label>
+                            <input type="date" name="appointment_datetime" value="{{iso_date}}" />
+                        </div>
+
+                        <div class="form-check">
+                            <input name="is_attended" class="form-check-input" type="radio" value="True" id="flexCheckDefault" {% if appointment.is_attended == True %} checked {% endif %}>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Present
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input name="is_attended" class="form-check-input" type="radio" value="False" id="flexCheckChecked" {% if appointment.is_attended == False %} checked {% endif %}>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Absent
+                            </label>
+                        </div>
+                        <br>
+            
+                        <button class="btn btn-primary w-100 py-2" type="submit" fdprocessedid="1isj6h">Update appointment</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+{% endblock %}
