@@ -6,7 +6,7 @@
 <h2>Sign-in</h2>
 
 {% if msg %}
-<p class="text-danger">{{msg}}</p>
+<p>{{msg}}</p>
 {% endif %}
 <form action="{% url 'accounts:signin' %}" method="POST">
     {% csrf_token %}
