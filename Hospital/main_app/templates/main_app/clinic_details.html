@@ -1,0 +1,106 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{%block title%} {{clinic.name}} {%endblock%}
+
+{%block content%}
+<div class="container d-flex flex-column gap-2" >
+    <h1 style="margin-top:50px; margin-bottom:50px;">{{clinic.name}} "{{clinic.department}}"</h1>
+
+    <img class="rounded d-block" src="{{ clinic.feature_image.url }}" style="width:50rem; heigt:50rem;" />
+
+    <div class="d-flex justify-content-between align-items-center gap-2">
+        <h5>Established date: {{clinic.established_at}}</h5>
+    </div>
+    <div>
+        <h4> Description:</h4>
+        <p>{{clinic.description}}</p>
+    </div>
+
+    <div class="d-flex gap-2">
+        {% if request.user.is_staff %}
+        <a href="{% url 'main_app:update_clinic' clinic.id %}" class="btn btn btn-info" style="margin-right:30px;">Update Clinic</a>
+        <a href="{% url 'main_app:delete_clinic' clinic.id %}" class="btn btn-danger">Delete Clinic</a>
+
+        {% endif %}
+    </div>
+</div>
+
+
+<div class="container d-flex flex-column gap-3" style="margin-top:30px;">
+    <h2>Appoinments in {{clinic.name}}</h2>
+    {% for appointment in appointments %}
+
+    <div class="d-flex flex-column p-4 border border-1 rounded-5 gap-1" style="margin-top:30px; margin-bottom:15px;">
+        <h6>{{appointment.user.first_name}} {{appointment.user.last_name}}</h6>
+        <p>Date and Time: {{appointment.appointment_datetime}}</p>
+
+        {% if appointment.is_attended == True%}
+            <p> The patient is attended.</p>
+        {%else%}
+            <p> The patient is not attended.</p>
+        {%endif%}
+
+        
+    </div>
+
+    
+
+    {% endfor %}
+
+</div>
+
+    <!-- contact section start -->
+   <div class="contact_section layout_padding" style="background-color:white;">
+    <div class="container">
+       <h1 class="contact_taital">What we do</h1>
+       <div class="news_section_2">
+          <div class="row">
+             <div class="col-md-6">
+                <div class="icon_main">
+                   <div class="icon_7"><img src="{% static 'images/icon-7.png' %}"></div>
+                   <h4 class="diabetes_text">Diabetes and obesity Counselling </h4>
+                </div>
+                <div class="icon_main">
+                   <div class="icon_7"><img src="{% static 'images/icon-5.png' %}"></div>
+                   <h4 class="diabetes_text">Obstetrics and Gynsecology</h4>
+                </div>
+                <div class="icon_main">
+                   <div class="icon_7"><img src="{% static 'images/icon-6.png' %}"></div>
+                   <h4 class="diabetes_text">Surgical and medical Oncology</h4>
+                </div>
+             </div>
+             <div class="col-md-6">
+                <div class="contact_box">
+                   <h1 class="book_text">Book Appoinment</h1>
+                   {% if request.user.is_authenticated %}
+
+                        <form action="{% url 'main_app:book_appointment' clinic.id %}" method="POST" style="align-items:center;">
+                        {% csrf_token %}
+                            <input type="text" class="form-control" placeholder="Your age" name="patient_age">
+                            <textarea style="margin-top:50px;" class="form-control" placeholder="Write your case description" rows="5" id="comment" name="case_description"></textarea>
+                            <label style="margin-top:50px;" for="exampleFormControlInput1" class="form-label">Appoinment Date and Time</label>
+                            <input style="margin-top:50px;" type="datetime-local" name="appointment_datetime"/>
+                            <input style="margin-top:100px;" type="submit" class="btn btn-info" value="Book" />
+
+                            {% if msg %}
+                                <p class="text-danger">{{msg}}</p>
+                            {% endif %}
+
+                            
+
+                        </form>
+                   {% else %}
+                        <div class="alert alert-dark" role="alert">
+                            <h3> Please <a href="{% url 'accounts:sign_in' %}">sign in</a> or <a href="{% url 'accounts:sign_up' %}">sign up</a> to book an appointment!</h3>
+                        </div>
+                    {% endif %}
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- contact section end -->
+
+{%endblock%}
