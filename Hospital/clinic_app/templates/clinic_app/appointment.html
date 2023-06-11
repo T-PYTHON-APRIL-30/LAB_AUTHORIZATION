@@ -1,0 +1,32 @@
+{% extends 'clinic_app/base.html' %}
+{% block title %} Appointments {% endblock%}
+
+{% block content %}
+
+<h1>{{ clinic.name }}, appointment schedule</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Date/Time</th>
+            <th>Case Description</th>
+            <th>Patient Age</th>
+            <th>Attended</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.appointment_datetime }}</td>
+            <td>{{ appointment.case_description }}</td>
+            <td>{{ appointment.patient_age }}</td>
+            <td>{% if appointment.is_attended %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No appointments scheduled.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

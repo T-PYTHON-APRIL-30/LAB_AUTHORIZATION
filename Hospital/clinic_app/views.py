@@ -52,3 +52,6 @@ def update_clinic(request:HttpRequest, clinic_id):
 def contact(request):
     return render(request, 'clinic_app/contact.html')
 
+def appointment_page(request:HttpRequest, clinic_id):
+    clinic = Clinic.objects.get(id=clinic_id)
+    return render(request, 'clinic_app/appointment.html', {"clinic":clinic})

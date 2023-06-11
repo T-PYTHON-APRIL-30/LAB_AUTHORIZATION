@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Clinic(models.Model):
     name = models.CharField(max_length=100)
-    feature_image = models.ImageField(upload_to="images/", default="images/default.jpg")
+    feature_image = models.ImageField(upload_to="images/", default="images/default.png")
     description = models.TextField()
     DEPARTMENT_CHOICES = [
         ('Heart Center', 'Heart Center'),
