@@ -1,0 +1,97 @@
+
+{% extends 'main_app/home.html' %}
+{%load static%}
+{% block title%}Art{%endblock%}
+{%block content%}
+            <section class="banner-section d-flex justify-content-center align-items-end">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-7 col-12">
+                            <h1 class="text-white mb-lg-0">Details </h1>
+                        </div>
+
+                        <div class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">Art</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+           
+            <section class="section-padding section-bg">
+                <div class="container">
+                  
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Case Description</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Time Appointment</th>
+                            <th scope="col">statuis Appointment</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {%for appointment in appointments %}
+                          <tr>
+
+                            <th scope="row">{{appointment.id}}</th>
+                            <td>{{appointment.name}}</td>
+                            <td>{{appointment.patient_age}}</td>
+                            <td>{{appointment.discription}}</td>
+                            <td>{{appointment.phone_number}}</td>
+                            <td>{{appointment.appointment_datetime}}</td>
+                            {% if appointment.is_attended %}
+                            <td>Reservation done</td>
+                          {% else %}
+                          <td>   waiting  </td>
+                          {% endif %}                            
+
+                               <form method="POST">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" id="appointmentId" name="appointmentId"value="{{appointment.id}}" >
+                                                    
+                                                    <td>
+                                                    
+                                                        <button  class="btn btn-outline-success"  style="width: 50px; height: 15;"  id="appointmenupdate" name="appointmenupdate">
+                                                            Accept
+                                                        </button>
+                                                    </td>
+
+                                                        <td>
+
+                                                        <button  class="btn btn-outline-danger" style="width: 50px; height: 15;" id="appointmendelete" name="appointmendelete">
+                                                            refused
+                                                        </button>
+
+                                                    </td>
+                          </tr>
+                           {%endfor%}
+                        </tbody>
+                      
+                      </table>
+                     
+
+
+
+
+
+               
+                </div>
+            </section>
+        </main>
+        {%endblock%}

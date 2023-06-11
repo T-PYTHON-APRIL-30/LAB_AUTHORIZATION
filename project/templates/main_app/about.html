@@ -1,0 +1,61 @@
+{% extends 'main_app/home.html' %}
+{%load static%}
+{% block title%}About{%endblock%}
+
+
+
+{%block content%}
+            <section class="banner-section d-flex justify-content-center align-items-end">
+                <div class="section-overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7 col-12">
+                            <h1 class="text-white mb-lg-0">About Us</h1>
+                        </div>
+                        <div class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <img src="{% static 'images/pinklogo.png'%}" class="featured-image img-fluid">
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="featured-block">
+                              <h2 class="mb-4">Reliable &amp; Fast Art <br> Service</h2>
+
+                              <p><a href="#">JHN</a> I support online art owners to build and run a simple, scale and thriving business.
+                              <p>I am <strong>a software engineer</strong> ,illustrator, web designer, and I can train in equestrian and swimming <a href="https://web.whatsapp.com/" target="_blank">contact me</a> for more info. Thank you.</p>
+
+                                <a class="custom-btn btn button button--atlas mt-3" href="{% url 'main_app:contact_page' %}">
+                                    <span>Get in touch</span>
+
+                                    <div class="marquee" aria-hidden="true">
+                                        <div class="marquee__inner">
+                                            <span>Get in touch</span>
+                                            <span>Get in touch</span>
+                                            <span>Get in touch</span>
+                                            <span>Get in touch</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            {%endblock%}

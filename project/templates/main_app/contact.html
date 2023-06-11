@@ -1,0 +1,100 @@
+
+{% extends 'main_app/home.html' %}
+{%load static%}
+{% block title%}Contact{%endblock%}
+{%block content%}
+           <section class="banner-section d-flex justify-content-center align-items-end">
+                <div class="section-overlay"></div>
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-7 col-12">
+                            <h1 class="text-white mb-lg-0">Contact</h1>
+                        </div>
+
+                        <div class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section class="contact-section section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-5 col-12 me-auto mb-lg-0 mb-5">
+                            <h2 class="my-3">We're happy to help</h2>
+
+                            <p>If you have the passion to learn any of our skills, we are waiting for you.</p>
+
+                            <div class="contact-info bg-white shadow-lg">
+                                <h3 class="mb-4">
+                                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.2868021934105!2d46.7154926262258!3d24.85405234551696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2efbd2d9c324c7%3A0x9124f530f1b56443!2z2KfZg9in2K_ZitmF2YrYqSDYt9mI2YrZgg!5e0!3m2!1sar!2ssa!4v1685876566395!5m2!1sar!2ssa" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                                </h3>
+
+                                <h5 class="d-flex mt-3 mb-3">
+                                    <i class="bi-geo-alt-fill custom-icon me-3"></i>
+                                    Riyadh, Saudi Arabia
+                                </h5>
+
+                                <h5 class="d-flex mb-3">
+                                    <i class="bi-telephone-fill custom-icon me-3"></i>
+
+                                    <a href="tel: 110-220-9800">
+                                        +966 50 225 6188
+                                    </a>
+                                </h5>
+
+                                <h5 class="d-flex">
+                                    <i class="bi-envelope-fill custom-icon me-3"></i>
+
+                                    <a href="jh75n.awad@gmail.com">
+                                        jh75n.awad@gmail.com
+                                    </a>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <form class="custom-form consulting-form bg-white shadow-lg mb-5 mb-lg-0" action="#" method="post" role="form">
+                                <div class="consulting-form-header d-flex align-items-center">
+                                    <h3 class="mb-4">Get a Free Quotation</h3>
+                                </div>
+
+                                <div class="consulting-form-body">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <input type="text" name="volunteer-name" id="volunteer-name" class="form-control" placeholder="Your Name" required>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <input type="email" name="volunteer-email" id="volunteer-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Your Email" required>
+                                        </div>
+                                    </div>
+
+                                    <select class="form-select form-control" name="job-salary" id="job-salary" aria-label="Default select example">
+                                        <option value="1">Drawings by hand</option>
+                                        <option value="2">Digital Drawing</option>
+                                        <!----<option value="2">Equestrian training</option>--->
+                                        <option value="2">Website designe</option>
+                                    </select>
+                                    <textarea name="volunteer-message" rows="3" class="form-control" id="volunteer-message" placeholder="Comment"></textarea>
+                                    <div class="col-lg-6 col-md-10 col-8 mx-auto">
+                                        <button type="submit" class="form-control">Submit Request</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+        {%endblock%}
