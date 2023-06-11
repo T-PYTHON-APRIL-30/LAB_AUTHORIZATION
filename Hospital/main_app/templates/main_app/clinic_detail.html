@@ -5,19 +5,18 @@
 
 {% block content %}
 
-<div class="container d-flex flex-column gap-2">
-    <h1>{{clinic.name}}</h1>
-    
-    <img class="rounded-5" src="{{clinic.feature_image.url}}" />
-    <div class="d-flex justify-content-between align-items-center gap-2">
-        <div class="d-flex gap-2">
-            {% if request.user.is_staff %}
-            <a href="{% url 'main_app:update_clinic' clinic.id %}" class="btn btn-warning">update game</a>
-            <a href="{% url 'main_app:delete_clinic' clinic.id %}" class="btn btn-danger">Delete game</a>
-            {% endif %}
-        </div>
+<div class="container d-flex flex-column gap-2 align-items-center ">
+  <h1>{{clinic.name}}</h1>
+  <img class="rounded-5" src="{{clinic.feature_image.url}}" style="width:15cm ;height:12cm; border-radius: 3px;"/>
+  <div class="d-flex justify-content-between align-items-center gap-2">
+    <div class="d-flex gap-2">
+      {% if perms.main_app.change_clinic and perms.main_app.delete_clinic%}
+      <a href="{% url 'main_app:update_clinic' clinic.id %}" class="btn btn-warning">update game</a>
+      <a href="{% url 'main_app:delete_clinic' clinic.id %}" class="btn btn-danger">Delete game</a>
+      {% endif %}
     </div>
-    <p>{{clinic.description}}</p>
+  </div>
+  <p>{{clinic.description}}</p>
 </div>
 
 <!-- Make Appointment -->
@@ -50,6 +49,7 @@
     Please <a href="{% url 'accounts:sign_up' %}">register</a> or <a href="{% url 'accounts:sign_in' %}">log in</a> to booking an appointment!
   </div>
   {% endif %}
+  
   {% endblock %}
 </div>
 

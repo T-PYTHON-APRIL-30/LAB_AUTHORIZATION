@@ -1,0 +1,53 @@
+{% extends 'main_app/index.html' %}
+
+{% block title %} Appointments View {% endblock%}
+
+
+{% block content %}
+
+<div  class="flex flex-col items-center mb-15"> 
+    <div  class="flex flex-col items-center p-5  border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 ">
+        <div class="border-b border-gray-900/10 pb-12">
+            <h2 class="text-base font-semibold leading-7 " style="color:rgb(80, 241, 187);">All Appointments</h2>
+            <h2 class="text-base font-semibold leading-7 ">{{clinic.name}}</h2>
+            <img src="{{clinic.feature_image.url}}" style="width: 100%; height: 140px; border-radius: 10px;" alt="" srcset="">
+    
+            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div class="sm:col-span-2">
+                <label for="first-name" class="block text-sm font-medium leading-3"> Patient name</label>
+                <h1 >{{appointment.user.first_name}}</h1>
+              </div>
+              <div class="sm:col-span-2" >
+                <label for="first-name" class="block text-sm font-medium leading-3" > clinic name</label>
+               <h1 >{{clinic.name}}</12>
+              </div>
+    
+    
+              <div class="sm:col-span-2" >
+                <label for="department" class="block text-sm font-medium leading-6 " >department</label>
+                <h1>{{clinic.department}}</h1>
+              </div>
+            </div>
+            {% for appointment in appointments  %}
+            <div class="mt-10 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 ">
+    
+    
+    
+                <div class="flex flex-col justify-between p-4 leading-normal " >
+                    <h5 class="mb-2 text-2xl p-8 font-bold tracking-tight text-gray-900 dark:text-white">case description : {{appointment.case_description}}</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">time : {{appointment.appointment_datetime}}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">age : {{appointment.patient_age}}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Clinic : {{appointment.clinic.name}}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">is attended : {% if appointment.is_attended  %} yes {% else %} not yet {% endif %} </p>
+    
+    
+                </div>
+            </div>
+            {% endfor %}
+      </div>
+      </div>
+    
+    </div>
+    
+
+{% endblock %}

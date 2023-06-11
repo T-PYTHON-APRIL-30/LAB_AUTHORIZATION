@@ -1,6 +1,6 @@
 {% extends 'main_app/index.html' %}
 
-{% block title %} Not Found {% endblock%}
+{% block title %} search results{% endblock%}
 
 
 {% block content %}
@@ -13,7 +13,7 @@
         <div class="header">
           <div class="post-category">
           </div> 
-          <a href="{% url 'main_app:clinic_detail' %}" class="post-thumb">
+          <a href="{% url 'main_app:clinic_detail' clinic.id %}" class="post-thumb">
             <img src={{clinic.feature_image.url}} alt="">
           </a>
         </div>
@@ -22,7 +22,7 @@
           <div class="site-info">
             <p class="card-text">{{clinic.description| slice:":40" }}</p>
           </div>
-          <a href="{% url 'main_app:clinic_detail' %}" class="btn btn-primary mt-3">View More</a>
+          <a href="{% url 'main_app:clinic_detail' clinic.id %}" class="btn btn-primary mt-3">View More</a>
         </div>
       </div>
     </div>

@@ -13,6 +13,8 @@ def index_page(request:HttpRequest):
 
     return render(request, "main_app/index.html", {"clinics" : clinics})
 
+
+
 def add_clinic(request:HttpRequest):
 
     if not request.user.is_staff:
@@ -26,8 +28,12 @@ def add_clinic(request:HttpRequest):
 
     return render(request, "main_app/add_clinic.html")
 
-def update_clinic(request:HttpRequest, clinic_id):
 
+
+def update_clinic(request:HttpRequest, clinic_id):
+    if not (request.user.has_perm("main_app.change_clinic")):
+        return redirect("accounts:no_permission_page")
+    
     clinic = Clinic.objects.get(id=clinic_id)
 
     #updating the clinic
@@ -46,6 +52,7 @@ def update_clinic(request:HttpRequest, clinic_id):
     return render(request, 'main_app/update_clinic.html', {"clinic" : clinic})
 
 
+
 def delete_clinic(request:HttpRequest, clinic_id):
 
     #check that user is staff and has a permission to delete
@@ -56,6 +63,7 @@ def delete_clinic(request:HttpRequest, clinic_id):
     clinic.delete()
 
     return redirect("main_app:index_page")
+
 
 
 def clinic_detail(request:HttpRequest, clinic_id):
@@ -76,6 +84,17 @@ def make_appointment(request:HttpRequest, clinic_id):
         new_appointment.save()
     
     return redirect("main_app:clinic_detail", clinic_id=clinic_id)
+
+
+
+def appointment_view(request:HttpRequest):
+
+    if not (request.user.is_staff and  request.user.has_perm("main_app.add_appointment")):
+        appointment_user=Appointment.objects.filter(user=request.user)
+    else:
+        appointment_user=Appointment.objects.all()
+    return render(request,"main_app/appointment_view.html",{"appointment_user":appointment_user })
+
 
 def search_page(request:HttpRequest):
     search_phrase = request.GET.get("search", "")

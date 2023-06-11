@@ -11,8 +11,6 @@ urlpatterns = [
     path("clinics/search/", views.search_page, name="search_page"),
     path('clinics/update/<clinic_id>',views.update_clinic,name="update_clinic"),
     path("clinics/delete/<clinic_id>/", views.delete_clinic, name="delete_clinic"),
-
-
-
+    path("appointment/all/",views.appointment_view,name="appointment_view"),
 ]
 
