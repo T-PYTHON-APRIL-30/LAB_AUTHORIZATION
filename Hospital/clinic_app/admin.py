@@ -3,5 +3,8 @@ from .models import Clinic, Appointment
 
 # Register your models here.
 
-admin.site.register(Clinic)
+class ClinicAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'department')
+
+admin.site.register(Clinic, ClinicAdmin)
 admin.site.register(Appointment)

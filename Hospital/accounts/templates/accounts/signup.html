@@ -3,12 +3,12 @@
 
 {% block content %}
 
-<h2 style="text-align: center">Sign up</h2>
+<h1 style="text-align: center">Sign up</h1>
 {% if msg %}
 <p>{{msg}}</p>
 {% endif %}
 
-<form style="text-align: center" action="{% url 'accounts:signin' %}" method="POST">
+<form style="text-align: center" action="{% url 'accounts:signup' %}" method="POST">
     {% csrf_token %}
 
     <div>

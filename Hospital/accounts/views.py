@@ -17,7 +17,7 @@ def signin(request:HttpRequest):
             return redirect('clinic_app:home')
         else:
             msg = "Incorrect Try Again"
-    return render(request, "accounts/signin.html", {"msg" : msg})
+    return render(request, "clinic_app/home.html", {"msg" : msg})
 
 def signup(request:HttpRequest):
     if request.method == "POST":
@@ -28,4 +28,4 @@ def signup(request:HttpRequest):
 
 def logout(request:HttpRequest):
     logout(request)
-    return redirect("clinic_app:home") # to the signin? or home?
+    return redirect("accounts:signin")
