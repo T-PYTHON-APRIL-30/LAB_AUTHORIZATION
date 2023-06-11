@@ -8,7 +8,8 @@ from django.http import HttpRequest, HttpResponse
 
 def signin(request:HttpRequest):
     msg = None
-    if request == "POST":
+    if request.method == "POST":
+
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
@@ -16,16 +17,16 @@ def signin(request:HttpRequest):
             login(request, user)
             return redirect('clinic_app:home')
         else:
-            msg = "Incorrect Try Again"
-    return render(request, "clinic_app/home.html", {"msg" : msg})
+            msg = "incorrect try again"
+    return render(request, "accounts/signin.html", {"msg" : msg})
 
 def signup(request:HttpRequest):
     if request.method == "POST":
-        user = User.objects.create_user(username=request.POST["username"], email=request.POST["email"], password=request.POST["password"], first_name=request.POST["name"])
+        user = User.objects.create_user(username=request.POST["username"], email=request.POST["email"], password=request.POST["password"], first_name=request.POST["first_name"], last_name=request.POST["last_name"])
         user.save()
-        return redirect("accounts:signin")
+        return redirect("clinic_app:home")
     return render(request, "accounts/signup.html")
 
-def logout(request:HttpRequest):
+def logout_view(request:HttpRequest):
     logout(request)
-    return redirect("accounts:signin")
+    return redirect("accounts:sign_in")

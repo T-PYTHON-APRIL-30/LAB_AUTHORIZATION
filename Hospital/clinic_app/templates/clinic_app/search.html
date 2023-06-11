@@ -6,7 +6,7 @@
 
 {% for clinic in clinics %}
 <div style="text-align: center">
-    <h1> {{ clinic.name }}</h1>
+    <h4 style="color: orangered"> {{ clinic.name }}</h4>
     <a href="{% url 'clinic_app:clinic_details' clinic.id %}">Read more</a>
 </div>
 {% endfor %}

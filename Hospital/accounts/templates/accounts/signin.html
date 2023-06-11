@@ -5,10 +5,10 @@
 
 <h1 style="text-align: center">Sign in</h1>
 {% if msg %}
-<p>{{msg}}</p>
+<p style="text-align: center; color: red;">{{msg}}</p>
 {% endif %}
 
-<form style="text-align: center" action="{% url 'accounts:signin' %}" method="POST">
+<form style="text-align: center" action="{% url 'accounts:sign_in' %}" method="POST">
     {% csrf_token %}
 
     <div>

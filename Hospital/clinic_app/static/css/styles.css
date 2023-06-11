@@ -228,7 +228,7 @@ a:hover {
   display: block;
   width: 100%;
   height: 360px;
-  background: url('https://unsplash.com/photos/U4FyCp3-KzY') no-repeat;
+  background: url(/static/img/doctors.jpg) no-repeat;
   background-size: 100%;
 }
 
