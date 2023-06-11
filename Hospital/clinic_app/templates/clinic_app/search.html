@@ -1,0 +1,14 @@
+{%extends 'clinic_app/base.html'%}
+{% block title %} Search {% endblock%}
+{%load static%}
+
+{% block content%}
+
+{% for clinic in clinics %}
+<div style="text-align: center">
+    <h1> {{ clinic.name }}</h1>
+    <a href="{% url 'clinic_app:clinic_details' clinic.id %}">Read more</a>
+</div>
+{% endfor %}
+
+{% endblock %}

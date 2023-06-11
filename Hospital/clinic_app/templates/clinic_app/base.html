@@ -33,8 +33,8 @@
         </header>
 
         <div id="searchbar" class="clearfix">
-            <form id="searchform" method="get" action="searchpage.php">
-                <input type="search" name="search" id="s" placeholder="Keywords..." autocomplete="off">
+            <form action="{% url 'clinic_app:search' %}" method="GET" id="searchform">
+                <input type="search" name="search" id="s"  minlength="4" placeholder="Search keywords..." autocomplete="off">
             </form>
         </div>
 
@@ -42,7 +42,6 @@
 
         <div id="content">
             <p><a href="https://unsplash.com/photos/U4FyCp3-KzY" target="_blank">original image source</a></p>
-
             <h1>Clinic</h1>
             <p>Clinic that provides various clinical specialties, with a focus on delivering an outstanding patient
                 experience.</p>
@@ -51,9 +50,8 @@
         {% block content%}
         {% endblock %}
 
+        <br><br><footer style="text-align: center"> Copyright &copy; 2023 </footer>
     </div>
-
-    <footer style="text-align: center"> Copyright &copy; 2023 </footer>
 </body>
 
 </html>

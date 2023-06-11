@@ -31,3 +31,7 @@ def clinic_details(request:HttpRequest, clinic_id):
         return render(request, 'clinic_app/no_clinic.html')
     return render(request, 'clinic_app/clinic_details.html', {"clinic":clinic})
 
+def search(request:HttpRequest):
+    search_results = request.GET.get("search", "")
+    clinic = Clinic.objects.filter(name__contains=search_results)
+    return render(request, "clinic_app/search.html", {"clinics":clinic})
