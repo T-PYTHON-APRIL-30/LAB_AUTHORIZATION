@@ -12,7 +12,7 @@ def home_page(request :HttpRequest):
 def clinic_details(request :HttpRequest,clinic_id):
     clinic = Clinic.objects.get(id=clinic_id)
     
-    if not (request.user.is_staff):
+    if not (request.user.is_staff and request.user.has_perm("hospital_app.view_appointment")):
         appointment_user = Appointment.objects.filter(user=request.user, clinic=clinic)
     else:
         appointment_user = Appointment.objects.all()
