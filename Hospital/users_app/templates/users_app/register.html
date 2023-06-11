@@ -1,0 +1,46 @@
+{% extends 'main_app/index.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="d-flex align-items-center py-4">
+        <main class="form-signin w-100 m-auto">
+            <div class="container col-xxl-8 px-4 py-5 mb-5">
+                <form action="{% url 'users_app:register_page' %}" method="POST" class="w-50 align-items-center justify-content-center">
+                    {% csrf_token %}
+                    <h1 class="h3 mb-3 fw-normal">Full in your information</h1>
+
+                    {% if msg %}
+                        <div class="alert alert-danger" role="alert">{{msg}}</div>
+                    {% endif %}
+        
+                    <div class="form-floating">
+                        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="your user name" fdprocessedid="g79itm">
+                        <label for="floatingInput">user name</label>
+                    </div>
+
+                    <div class="form-floating">
+                        <input type="text" name="first_name" class="form-control" id="floatingInput" placeholder="your Frist name" fdprocessedid="g79itm">
+                        <label for="floatingInput">Frist name</label>
+                    </div>
+
+                    <div class="form-floating">
+                        <input type="text" name="last_name" class="form-control" id="floatingInput" placeholder="your last name" fdprocessedid="g79itm">
+                        <label for="floatingInput">last name</label>
+                    </div>
+
+                    <div class="form-floating">
+                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" fdprocessedid="g79itm">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" fdprocessedid="k39vz22">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <br>
+        
+                    <button class="btn btn-primary w-100 py-2" type="submit" fdprocessedid="1isj6h">Register</button>
+                </form>
+            </div>
+        </main>
+    </div>
+{% endblock %}
