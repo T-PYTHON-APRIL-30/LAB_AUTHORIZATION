@@ -1,0 +1,38 @@
+{%extends 'hospital_app/base.html'%}
+{% load static %}
+{% block title %}Update {{clinic.name}} {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3>Book Appointment</h3>
+
+    <form action="{% url 'hospital_app:update_appointment' appointment.id %}" method="POST">
+        {% csrf_token %}
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Case Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="describe your case" name="case_description">{{appointment.case_description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Patient Age</label>
+            <input type="integer" class="form-control" id="exampleFormControlInput1" placeholder="Type your age" name="patient_age"value="{{appointment.patient_age}}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Appointment Date and Time</label>
+            <input type="datetime-local" name="appointment_datetime" value="{{appointment.appointment_datetime}}" />
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Patient attended? </label>
+            <select class="form-select" aria-label="Default select example" name="is_attended">
+                <option value="True"{% if appointment.is_attended == True %} selected {% endif %}>attended</option>
+                <option value="False"{% if appointment.is_attended == False %} selected {% endif %}>Not attended</option>
+              </select>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Update" />
+
+    </form>
+</div>
+{% endblock %}

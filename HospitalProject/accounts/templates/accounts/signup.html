@@ -1,0 +1,49 @@
+{% extends 'hospital_app/base.html'%}
+
+
+{% block title %} Sign Up new user {% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center">
+
+    <h2 class="mt-5 fw-bold">Sign-up</h2>
+    <p>Already a member? <a href="{% url 'accounts:sign_in' %}">Login</a></p>
+    {% if msg %}
+    <div class="alert alert-danger" role="alert">
+        {{msg}}
+      </div>
+    {% endif %}
+    <form class="d-flex flex-column gap-3 w-50 mt-4" action="{% url 'accounts:sign_up' %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="First name" name="first_name">
+          <label for="floatingInput">First name</label>
+        </div>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Last name" name="last_name">
+          <label for="floatingInput">Last name</label>
+        </div>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="username" name="username">
+          <label for="floatingInput">User name</label>
+        </div>
+
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+          <label for="floatingInput">Email address</label>
+        </div>
+
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+          <label for="floatingPassword">Password</label>
+        </div>
+
+        <button class="btn w-100 py-2" style="background-color: #36c0c2; color: #fff;" type="submit">Sign up</button>
+
+      </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{%extends 'hospital_app/base.html'%}
+{% load static %}
+{% block title %}{{appointment.user.username}}{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column gap-3" style="margin-top: 30px;">
+    <h2>Appointment Details</h2>
+    <div class="d-flex flex-column p-4 border border-1 rounded-5 gap-1">
+        <h6>Patient: {{appointment.user.username}}</h6>
+        <h6>Clinic: {{appointment.clinic.name}}</h6>
+        <p>Description: {{appointment.case_description}}</p>
+        <p>Appointment Date: {{appointment.appointment_datetime}}</p>
+        <p>Attendance: {{appointment.is_attended}}</p>
+    </div>
+    <div class="d-flex gap-2">
+        {% if request.user.is_staff %}
+        <a href="{% url 'hospital_app:update_appointment' appointment.id %}" class="btn btn-warning" style="width: 15%; margin-top: 30px; margin-left: 30px;">Update Appointment</a>
+        <a href="#" class="btn btn-danger" style="width: 15%; margin-left: 30px;">Delete Appointment</a>
+        {% endif %}
+    </div>
+            
+            
+</div>
+</section>
+{% endblock %}
