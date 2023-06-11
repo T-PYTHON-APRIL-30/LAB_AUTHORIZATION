@@ -1,13 +1,9 @@
-{% extends 'accounts/base.html'%}
+{% extends 'clinic_app/base.html' %}
 {% block title %} Home {% endblock %}
 
 {% block content %}
 
-<h1 style="text-align: center">Available Clinis</h1>
-
-<div style="text-align: center">
-    <a href="{% url 'accounts:signin' %}">Sign in</a>
-</div>
+<h1 style="text-align: center">Available Clinics</h1>
 
 <div style="text-align: center">
     {% for clinic in clinics %}

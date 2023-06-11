@@ -1,28 +1,24 @@
 {% extends 'clinic_app/base.html' %}
+{% block title %} Add Clinic {% endblock %}
 
 {% block content %}
 
 <h1 style="text-align: center">Add Clinic</h1>
 <form method="POST" style="text-align: center">
     {% csrf_token %}
-
     <div>
-        <label for="title">Name:</label><br>
-        <input name="name" type="text">
+        <input placeholder="clinic name" name="name" type="text">
     </div>
     <br>
     <div>
-        <label for="content">Description:</label><br>
-        <textarea name="description"></textarea>
+        <textarea placeholder="description" name="description"></textarea>
     </div>
     <br>
     <div>
-        <label for="feature_image">Feature Image:</label>
         <input type="file" name="feature_image">
     </div>
     <br>
     <div>
-        <label for="department">Department:</label>
         <select name="department">
             <option value="Heart Center">Heart Center</option>
             <option value="Neuroscience Center">Neuroscience Center</option>
@@ -34,12 +30,10 @@
 ƒ    </div>
     <br>
     <div>
-        <label for="birthdaytime">Established at:</label><br>
         <input type="date" name="established_at">
     </div>
-
     <br>
-    <button type="submit">Add Clinic</button>
+    <button type="submit">Add clinic</button>
 </form>
 <br>
 

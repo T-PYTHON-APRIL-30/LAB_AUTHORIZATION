@@ -3,39 +3,38 @@
 
 <html>
 
-<meta charset="UTF-8">
-<title>{% block title %} {% endblock %}</title>
-<!-- Latest compiled and minified CSS -->
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <!-- Latest compiled and minified CSS -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
     <div id="w">
         <header id="topbar" class="clearfix">
-            <div id="logo">Clinic</div>
+            <div id="logo">ClinicWebsite</div>
 
             <nav id="topnav">
                 <ul>
                     <li><a href="{% url 'clinic_app:home' %}">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li><a href="#" id="searchtoggl"><i class="fa fa-search fa-lg"></i>Search</a></li>
+                    <li><a href="{% url 'accounts:signin' %}">Sign in</a></li>
                 </ul>
             </nav>
         </header>
 
         <div id="searchbar" class="clearfix">
             <form id="searchform" method="get" action="searchpage.php">
-                <button type="submit" id="searchsubmit" class="fa fa-search fa-4x"></button>
-                <input type="search" name="s" id="s" placeholder="Keywords..." autocomplete="off">
-
+                <input type="search" name="search" id="s" placeholder="Keywords..." autocomplete="off">
             </form>
         </div>
 
@@ -44,16 +43,16 @@
         <div id="content">
             <p><a href="https://unsplash.com/photos/U4FyCp3-KzY" target="_blank">original image source</a></p>
 
-            <h1>Clinic Website</h1>
+            <h1>Clinic</h1>
             <p>Clinic that provides various clinical specialties, with a focus on delivering an outstanding patient
                 experience.</p>
         </div>
 
         {% block content%}
         {% endblock %}
-        
+
     </div>
-    
+
     <footer style="text-align: center"> Copyright &copy; 2023 </footer>
 </body>
 
