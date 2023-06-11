@@ -1,0 +1,23 @@
+{% extends 'app_hospital/base.html'%}
+
+
+{% block detial %}
+
+{% for clin in clinics %}
+      <div class="flex flex-col md:flex-row  text-center md:-mx-4 ">
+        <div class="bg-white rounded-lg shadow-lg p-8 md:mx-4 justify-center">
+        <img class="mx-auto mb-6" width="85" height="80" viewBox="0 0 85 80"
+         src="{{ clin.feature_image.url }}">
+          <h4 class="text-xl font-bold">{{clin.name}}</h4>
+          <p class="mt-1">Let us show you how our experience.</p>
+          <a href="{% url 'app_hospital:one_clinic_detials' clin.id %}" 
+           type="button" class="text-white bg-blue-800 hover:bg-blue-800 focus:ring-blue-300 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-4 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <span class="sr-only">read more</span>
+            </a>
+            
+          
+          </div>
+          {% endfor %}
+        
+
+ {% endblock %}
