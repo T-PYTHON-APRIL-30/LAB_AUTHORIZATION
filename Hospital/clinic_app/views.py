@@ -48,4 +48,7 @@ def update_clinic(request:HttpRequest, clinic_id):
         return redirect("clinic_app:clinic_details", clinic_id=clinic.id)
     else:
         return render(request, 'clinic_app/update_clinic.html', {"clinic":clinic})
+    
+def contact(request):
+    return render(request, 'clinic_app/contact.html')
 
