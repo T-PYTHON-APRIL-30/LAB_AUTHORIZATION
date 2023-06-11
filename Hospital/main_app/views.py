@@ -73,17 +73,39 @@ def book_appointment(request:HttpRequest, clinic_id):
     if request.method == "POST":
         clinic_object = Clinic.objects.get(id=clinic_id)
         #addin a new appointment in database
-        new_appoinment = Appointment(user=request.user,clinic=clinic_object,case_description=request.POST["case_description"], patient_age=request.POST["patient_age"], appointment_datetime=request.POST["appointment_datetime"])
+        new_appoinment = Appointment(user=request.user,
+                            clinic=clinic_object,
+                            case_description=request.POST["case_description"],
+                            patient_age=request.POST["patient_age"],
+                            appointment_datetime=request.POST["appointment_datetime"])
+        
         new_appoinment.save()
 
+        '''appointment_datetime=request.POST["appointment_datetime"]
+
+        appointment = Appointment.objects.filter(appointment_datetime = appointment_datetime)'''
+
+         # Check if appointment is booked
+
+        '''if appointment.exists():
+            msg = "Please choose another datetime!"
+            age = range(1, 100)
+            clinic = Clinic.objects.get(id = clinic_id)
+            appointment = Appointment.objects.filter(clinic = clinic, user = request.user)
+            return render(request, 'main_app/clinics_detail.html', {'clinic': clinic, 'appointment': appointment, 'msg': msg})
+        
+        else:
+            new_appointment = Appointment(
+                clinic = clinic_object,
+                user = request.user,
+                case_description = request.POST["case_description"],
+                patient_age = request.POST["patient_age"],
+                appointment_datetime = request.POST["appointment_datetime"]
+            )
+            new_appointment.save()'''
+
+
     return redirect("main_app:clinic_detail", clinic_id=clinic_id)
-
-
-def appointments_page (request:HttpRequest):
-
-    appointments = Appointment.objects.all()
-
-    return render(request, "main_app/appointments.html", {"appointments" : appointments})
 
 
 def searchPage(request:HttpRequest):
@@ -91,6 +113,12 @@ def searchPage(request:HttpRequest):
     clinics = Clinic.objects.filter(name__contains=search_phrase)
 
     return render(request, "main_app/search.html", {"clinics" : clinics})
+
+
+    
+
+
+
 
 
 

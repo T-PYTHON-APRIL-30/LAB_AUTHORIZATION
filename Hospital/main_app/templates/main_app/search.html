@@ -1,6 +1,8 @@
 {% extends 'main_app/base.html' %}
 {% load static %}
 
+{%block title%} {%endblock%}
+
 {%block content%}
 <!-- news section start -->
 <div class="news_section layout_padding">
@@ -13,6 +15,7 @@
                 <div class="box_main">
                    <div class="icon_1"><img src="{{ clinic.feature_image.url }}"></div>
                    <a href="{% url 'main_app:clinic_detail' clinic.id %}"><h3 style="color:white;">{{clinic.name}}</h3></a>
+                   <h4 style="color:white;">{{clinic.department}}</h4>
                 </div>
              </div>
             {% endfor %}

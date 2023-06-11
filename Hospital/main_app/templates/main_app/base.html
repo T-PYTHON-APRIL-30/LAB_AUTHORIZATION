@@ -11,6 +11,8 @@
    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
    <!-- site metas -->
    <title>{%block title%}HomeCare{%endblock%}</title>
+   <link rel="icon" href="{% static 'images/Hospital.png'%}" type="image/icon type">
+
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
@@ -38,7 +40,7 @@
    <!-- header section start -->
    <div class="header_section">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-         <div class="logo"><a href="{% url 'main_app:homePage' %}"><img src="{% static 'images/logo.png' %}"></a></div>
+         <div class="logo"><a href="{% url 'main_app:homePage' %}"><img src="{% static 'images/Hospital.png' %}" style="width:15rem; height:15rem;"></a></div>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
@@ -180,7 +182,7 @@
             <form id="search" action="{% url 'main_app:searchPage' %}" method="GET" role="search">
                <div class="form">
                    <i class="fa fa-search"></i>
-                   <input type="search" name="search" class="form-control form-input" placeholder="Search by title...">
+                   <input type="search" name="search" class="form-control form-input" placeholder="Search by clinic name...">
                    <span class="left-pan"><i class="fa fa-microphone"></i></span>
                </div>
              </form>            

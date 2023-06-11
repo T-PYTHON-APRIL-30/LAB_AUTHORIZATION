@@ -34,7 +34,17 @@
     <div class="d-flex flex-column p-4 border border-1 rounded-5 gap-1" style="margin-top:30px; margin-bottom:15px;">
         <h6>{{appointment.user.first_name}} {{appointment.user.last_name}}</h6>
         <p>Date and Time: {{appointment.appointment_datetime}}</p>
+
+        {% if appointment.is_attended == True%}
+            <p> The patient is attended.</p>
+        {%else%}
+            <p> The patient is not attended.</p>
+        {%endif%}
+
+        
     </div>
+
+    
 
     {% endfor %}
 
@@ -64,6 +74,7 @@
                 <div class="contact_box">
                    <h1 class="book_text">Book Appoinment</h1>
                    {% if request.user.is_authenticated %}
+
                         <form action="{% url 'main_app:book_appointment' clinic.id %}" method="POST" style="align-items:center;">
                         {% csrf_token %}
                             <input type="text" class="form-control" placeholder="Your age" name="patient_age">
@@ -72,7 +83,11 @@
                             <input style="margin-top:50px;" type="datetime-local" name="appointment_datetime"/>
                             <input style="margin-top:100px;" type="submit" class="btn btn-info" value="Book" />
 
+                            {% if msg %}
+                                <p class="text-danger">{{msg}}</p>
+                            {% endif %}
 
+                            
 
                         </form>
                    {% else %}
