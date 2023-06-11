@@ -1,0 +1,55 @@
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Changa', sans-serif;
+}
+
+.video-container {
+    height: 60vh;
+}
+.video_cover {
+    width: auto;
+    height: 60vh;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.nav-link:hover {
+  color: rgb(216, 44, 121) !important;
+}
+
+
+
+/* star rating */
+.rating{
+    display : flex;
+    transform: scale(0.5, 0.5) translateX(-50%);
+  }
+  
+  .rating input{
+    position : absolute;
+    left     : -100vw;
+  }
+  
+  .rating label{
+    width      : 48px;
+    height     : 48px;
+    padding    : 48px 0 0;
+    
+    overflow   : hidden;
+    background : url('/static/images/stars.svg') no-repeat top left;
+  }
+  
+  .rating:not(:hover) input:indeterminate + label,
+  .rating:not(:hover) input:checked ~ input + label,
+  .rating input:hover ~ input + label{
+    background-position : -48px 0;
+  }
+  
+  .rating:not(:hover) input:focus-visible + label{
+    background-position : -96px 0;
+  }

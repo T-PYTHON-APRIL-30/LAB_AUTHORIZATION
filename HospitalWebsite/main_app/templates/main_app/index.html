@@ -1,0 +1,28 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block title %}Hospital{% endblock %}
+
+{% block content %}
+<h1>Clinics</h1>
+<ul>
+  {% for clinic in clinics %}
+  <div class="col-4 g-5">
+    <div class="card rounded-5" >
+        <img src="{{ clinic.feature_image.url }}" class="card-img-top rounded-5" alt="...">
+        <div class="card-body">
+        <h5 class="card-title"> {{ clinic.name }}</h5>
+        <div class="card-body p-0">
+            <div class="d-flex justify-content-between p-0 m-0">
+                <div>{{clinic.established_at}}</div>
+            </div>
+        </div>    
+        <a href="{% url 'main_app:detail' clinic.id %}" class="btn btn-primary mt-3">View More</a>
+        </div>
+    </div>
+</div>
+  {% endfor %}
+</ul>
+
+
+{% endblock %}

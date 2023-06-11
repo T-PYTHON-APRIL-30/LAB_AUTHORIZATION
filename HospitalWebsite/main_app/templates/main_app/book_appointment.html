@@ -1,0 +1,42 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %} Make Appointment {% endblock%}
+
+
+{% block content%}
+<h1>Make Appointment</h1>
+<div class="container">
+
+    <form action="{% url 'main_app:book_appointment' clinic.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in name" name="name">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Patient Age</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="Type Your Age" name="patient_age"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Case Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="descripe your problem" name="case_description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Appointment Time</label>
+            <input type="date" name="appointment_datetime" />
+        </div>
+
+
+
+        <div class="mb-3">
+            <input type="submit" value="Book Appointment" class="btn btn-primary" />
+        </div>
+
+
+    </form>
+
+</div>
+{% endblock %}
