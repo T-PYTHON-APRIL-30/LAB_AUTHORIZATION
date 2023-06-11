@@ -1,0 +1,55 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{%block title%}Add Clinic{%endblock%}
+
+{%block content%}
+<h1 style="margin-top:50px; margin-bottom:30px; margin-left:30px;">Add Clinic</h1>
+<div class="container">
+
+    <form style="margin-top:30px; margin-bottom:30px;" action="{% url 'main_app:addClinic' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Clinic Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in clinic name" name="name">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="fill in description" name="description"></textarea>
+        </div>
+
+        
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Clinic Department</label>
+            <select class="form-select" aria-label="Default select example" name="department">
+                <option value="Heart Center">Heart Center</option>
+                <option value="Neuroscience Center">Neuroscience Center</option>
+                <option value="Obesity Center">Obesity Center</option>
+                <option value="Eye Center">Eye Center</option>
+                <option value="Orthopedic Center">Orthopedic Center</option>
+                <option value="Pediatric Center">Pediatric Center</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Clinic Image</label>
+            <input type="file" name="feature_image" class="form-control" />
+        </div>
+
+        <div class="mb-3 gap-2">
+            <label for="exampleFormControlInput1" class="form-label">Established Date</label>
+            <input type="date" name="established_date"/>
+        </div>
+
+        <div class="mb-3">
+            <input type="submit" value="Create Clinic" class="btn btn btn-info" />
+        </div>
+
+
+    </form>
+
+</div>
+{%endblock%}

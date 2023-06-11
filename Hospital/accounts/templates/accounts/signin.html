@@ -1,0 +1,33 @@
+{% extends 'main_app/base.html'%}
+
+
+{% block title %} Sign In for Existing User {% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center">
+
+    <h2 style = "margin-top:30px;">Sign In to Home Care</h2>
+    {% if msg %}
+        <p class="text-danger">{{msg}}</p>
+    {% endif %}
+    <form class="d-flex flex-column gap-3 w-50" action="{% url 'accounts:sign_in' %}" method="POST" style = "margin-top:30px; margin-bottom:30px;">
+        {% csrf_token %}
+        
+
+        <div class="form-floating">
+            <label for="floatingInput" style = "margin-top:15px;">User name</label>
+            <input type="text" class="form-control" id="floatingInput" placeholder="username" name="username"> 
+        </div>
+
+
+        <div class="form-floating">
+          <label for="floatingPassword" style = "margin-top:15px;">Password</label>
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+        </div>
+    
+
+        <button class="btn btn btn-info w-100 py-2" type="submit" style = "margin-top:15px;">Sign In</button>
+      </form>
+    </div>
+
+{% endblock %}

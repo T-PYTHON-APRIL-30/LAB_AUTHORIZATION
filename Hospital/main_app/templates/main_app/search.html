@@ -1,0 +1,26 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{%block content%}
+<!-- news section start -->
+<div class="news_section layout_padding">
+    <div class="container">
+       <h1 class="health_taital">Search results for <span class="text-success">{{request.GET.search}}</span>:</h1>
+       <div class="news_section_2 layout_padding">
+          <div class="row">
+            {% for clinic in clinics %}
+             <div class="col-lg-4 col-sm-6" style="margin-top:40px;">
+                <div class="box_main">
+                   <div class="icon_1"><img src="{{ clinic.feature_image.url }}"></div>
+                   <a href="{% url 'main_app:clinic_detail' clinic.id %}"><h3 style="color:white;">{{clinic.name}}</h3></a>
+                </div>
+             </div>
+            {% endfor %}
+             
+             
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- news section end -->
+ {%endblock%}

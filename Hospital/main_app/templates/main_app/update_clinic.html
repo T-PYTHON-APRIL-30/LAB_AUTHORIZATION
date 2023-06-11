@@ -1,0 +1,56 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{%block title%}Add Clinic{%endblock%}
+
+{%block content%}
+<h1 style="margin-top:50px; margin-bottom:30px; margin-left:30px;">Add Clinic</h1>
+<div class="container">
+
+    <form style="margin-top:30px; margin-bottom:30px;" action="{% url 'main_app:update_clinic' clinic.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Clinic Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in clinic name" name="name" value="{{clinic.name}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="fill in description" name="description">{{clinic.description}}</textarea>
+        </div>
+
+        
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Clinic Department</label>
+            <select class="form-select" aria-label="Default select example" name="department">
+                <option value="Heart Center" {% if clinic.department == "Heart Center" %} selected {% endif %}>Heart Center</option>
+                <option value="Neuroscience Center" {% if clinic.department == "Neuroscience Center" %}  selected {% endif %}>Neuroscience Center</option>
+                <option value="Obesity Center" {% if clinic.department == "Obesity Center" %}  selected {% endif %}>Obesity Center</option>
+                <option value="Eye Center" {% if clinic.department == "Eye Center" %}  selected {% endif %}>Eye Center</option>
+                <option value="Orthopedic Center" {% if clinic.department == "Orthopedic Center" %}  selected {% endif %}>Orthopedic Center</option>
+                <option value="Pediatric Center" {% if clinic.department == "Pediatric Center" %}  selected {% endif %}>Pediatric Center</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Clinic Image</label>
+            <img src="{{clinic.feature_image.url}}" class="w-25 rounded-5"/>
+            <input type="file" name="feature_image" class="form-control" value="{{clinic.feature_image.url}}"/>
+        </div>
+
+        <div class="mb-3 gap-2">
+            <label for="exampleFormControlInput1" class="form-label">Established Date</label>
+            <input type="date" name="established_date" value="{{clinic.established_at}}"/>
+        </div>
+
+        <div class="mb-3">
+            <input type="submit" value="Update Clinic" class="btn btn btn-info" />
+        </div>
+
+
+    </form>
+
+</div>
+{%endblock%}

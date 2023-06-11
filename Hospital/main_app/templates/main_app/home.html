@@ -1,0 +1,28 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{%block content%}
+<!-- news section start -->
+<div class="news_section layout_padding">
+    <div class="container">
+       <h1 class="health_taital">Our Clinics:</h1>
+       <p class="health_text">We are available 24/7 to take care of you.</p>
+       <div class="news_section_2 layout_padding">
+          <div class="row">
+            {% for clinic in clinics %}
+             <div class="col-lg-4 col-sm-6" style="margin-top:40px;">
+                <div class="box_main">
+                   <div class="icon_1"><a href="{% url 'main_app:clinic_detail' clinic.id %}"><img src="{{ clinic.feature_image.url }}"></a></div>
+                   <a href="{% url 'main_app:clinic_detail' clinic.id %}"><h3 style="color:white;">{{clinic.name}}</h3></a>
+                   <h4 style="color:white;">{{clinic.department}}</h4>
+                </div>
+             </div>
+            {% endfor %}
+             
+             
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- news section end -->
+ {%endblock%}
