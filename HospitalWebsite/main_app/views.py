@@ -5,7 +5,7 @@ from .models import Clinic, Appointment
 
 def index_page(request: HttpRequest):
 
-    clinics = Clinic.objects.all()[:3]
+    clinics = Clinic.objects.all()
 
     return render(request, "main_app/index.html", {"clinics":clinics})
 
