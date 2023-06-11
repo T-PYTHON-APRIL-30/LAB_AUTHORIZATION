@@ -1,0 +1,45 @@
+{% extends 'main_app/base.html'%}
+{% load static%}
+{% block title %}
+Update Clinics
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="project__detail">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 mt-5">
+                <div class="intro text-center">
+                    <div class="hr-line"></div>
+                        <h1 style="font-size: 20pt;" class="diisplay-4">About <span style="color: #325473;font-size: 30pt;">{{clinic.name}}</span> </h1>
+                        <p style="font-size: 12pt;"class="mx-auto">Established at: {{clinic.established_at}} </p>
+                        <hr>
+                </div>
+            </div>
+            <div class="col-6 m-0 g-0">
+                <img style="border: 5px solid #060606; border-radius: 20px;" class="img__detail" src="{{ clinic.feature_image.url }}" alt="">
+            </div>
+            <div class="col-6 mb-3 m-0 g-0">
+                <p style="font-size: 14pt;">{{clinic.description}}</p>
+            </div>
+            <div class="intro text-center gy-3">
+            <div class="col-12  mt-3 mb-3">
+              <a href="{% url 'main_app:create_appointment' clinic.id %}"><button class="btn btn-dark">Book an appointment</button></a>
+            </div>
+            {% if request.user.is_staff %}
+            <div class="col-12 gap-3 ">
+               <a href="{% url 'main_app:update_clinics' clinic.id %}"><button class="btn btn-warning">Update clinic</button></a>
+               <a href="{% url 'main_app:add_clinics' %}"><button class="btn btn-warning">Add clinic</button></a>
+             </div>
+           {% endif %}
+            </div>
+        </div>
+        <hr>
+
+    </div>
+</section>
+{% endblock %}
+
