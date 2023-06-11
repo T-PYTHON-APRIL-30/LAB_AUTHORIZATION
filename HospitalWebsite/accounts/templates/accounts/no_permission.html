@@ -1,0 +1,27 @@
+{% extends 'main_app/base.html'%}
+{% load static%}
+{% block title %}
+No Permission Page
+{% endblock %}
+
+
+{% block content %}
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-12" data-aos="fade-up">
+                <div class="intro text-center">
+                    <div class="hr-line"></div>
+                        <h1 class="diisplay-4">You don't have permission. Please <span><a href="{% url 'accounts:log_in' %}">Log In</a> </span> with another user</h1>
+                        <p class="mx-auto"><a href="{% url 'main_app:home_page' %}"><button class="btn btn-dark">Back</button></a></p>
+                </div>
+            </div>
+        </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,229 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial
+        -scale=1">
+        <title>{% block title %} {% endblock %}</title>
+    <!--aos animate-->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!--Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!--static folder-->
+        <link rel="icon" href="{% static 'icons/Hicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'css/main_style.css' %}">
+    <!--Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@700&family=Domine&family=Dosis:wght@600&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <style>
+             section {
+                
+                padding: 170px;
+            }
+            footer.footer-area.navbar.nav-item{
+                font-size: 18pt;
+            }
+            a{
+                text-decoration: none !important;
+                transition: all 0.4s ease !important;
+                
+            }
+            .offcanvas{
+              color: aliceblue;
+              font-weight: 500;
+              background-color:  rgba(35, 61, 84, 0.482);
+              padding-bottom: 30px;
+            }
+            .navbar{
+                top: 0;
+                transition: all 0.5s;
+                font-size: 13pt;
+                font-weight: 500;
+                height: 90px;
+                color: rgb(14, 25, 33);
+                padding-bottom: 0;
+                padding-top: 0;
+                align-items: center;
+            }
+            .intro .hr-line{
+                width: 60px;
+                height: 4px;
+                background-color: #0a1118;
+                display: inline-block;
+            }
+            #myProjects{
+                box-shadow: 0 3px 5px rgba(82, 90, 97, 0.171) ;
+                
+            }
+            #skill{
+                background-color: #2d4d6910 !important;
+                box-shadow: 0 3px 5px rgba(82, 90, 97, 0.171) ;
+            }
+            .icoskill{
+                width: 100px;
+                height: 100px;
+                object-fit: contain;
+                background-color:#e9f0faa0 ;
+                border-radius: 50%;
+                padding: 5px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.358);
+            }
+            #hobbies{
+                background-color: #2d4d6910 !important
+            }
+
+        </style>
+        {% block header%}
+        {% endblock %}
+    </head>
+    <body>
+
+    <!--Header-->
+
+          <nav class="navbar navbar-dark text-white fixed-top align-items-center">
+            
+            <div class="container">
+              <a class="navbar-brand p-0 m-0" href="#"><img style="width: 150px;height: 90px;object-fit: cover;" src="{% static 'images/logoo1.png' %}"></a>
+              <form class="d-flex" role="search" action="{% url 'main_app:search_page' %}" method="get">
+                <input name="search" class="form-control me-2 text-white" type="search" placeholder="Search for clinics" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+              {% if request.user.is_authenticated %}
+                    <div class="d-flex gap-2 align-items-center justify-content-center">
+                        <h5 class="m-0 p-0">Welcome <span style="text-transform: uppercase;">{{ request.user.username }}</span></h5>
+                        <a href="{% url 'accounts:log_out' %}"><button type="button" class="btn btn-outline-info">LogOut</button></a>
+                    </div> 
+                {% else %}
+              <div class="div">
+                  <a href="{% url 'accounts:log_in' %}"><button type="button" class="btn btn-outline-info">LogIn</button></a>
+                  <a href="{% url 'accounts:register' %}"><button type="button" class="btn btn-outline-info">Register</button></a>
+              </div>
+              {% endif %}
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                  <a href="{% url 'main_app:home_page' %}"><h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img style="width: 150px;height: 150px;object-fit: cover;" src="{% static 'images/logoo1.png' %}"></h5></a>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  
+                </div>
+                <div class="offcanvas-body px-5 ">
+                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{% url 'main_app:home_page' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'main_app:about_us' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#ourClinics">Clinics</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'main_app:appointment_list' %}">Appointments</a>
+                    </li>
+                    {% if request.user.is_staff%}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'main_app:add_clinics' %}">Add Clinics</a>
+                    </li>
+                   {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+
+
+    <!--JS for navbar-->
+        <script>
+            const navEl = document.querySelector('.navbar');
+            window.addEventListener('scroll', () =>{
+                if (window.scrollY >= 30){
+                    navEl.classList.add('navbar-scrolled');
+                }else if(window.scrollY < 30){
+                    navEl.classList.remove('navbar-scrolled');
+                }
+            })
+        </script>
+
+
+        {% block content %}
+        
+        {% endblock %}
+
+
+        <footer class="footer-area">
+            <div class="container-fuild p-1  end-0 start-0">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-4 g-3">
+                        <div class="site-logo text-center p-1">
+                            <a href="{% url 'main_app:home_page' %}"><img height="200" width="200" src="{% static 'images/logoo1.png' %}"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-3">
+                        <nav class="navbar navbar-expand-lg ">
+                            <div class="container">
+                              
+                              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+                              <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav ms-auto">
+                                  <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'main_app:home_page' %}">Home</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'main_app:about_us' %}">About Us</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#ourClinics">Clinics</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'main_app:appointment_list' %}">Appointments</a>
+                                  </li>
+                                  {% if request.user.is_staff%}
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'main_app:add_clinics' %}">Add Clinics</a>
+                                  </li>
+                                 {% endif %}
+                                </ul>
+                              </div>
+                            </div>
+                          </nav>
+                    </div>
+                </div>
+
+                <hr>      
+
+                <div class="row"> 
+                    <div class="social text-center">
+                        <h5 class="text-uppercase">contact us</h5>
+                        <a style="color: dodgerblue;" ><i class="bi bi-twitter" onclick ="window.open('','_blank')"></i></a>
+                        <a style="color:midnightblue;" ><i class="bi bi-linkedin" onclick ="window.open('','_blank')"></i></a>
+                        <a style="color:darkred; font-size: 24px;"><i class="bi bi-youtube" onclick ="window.open('','_blank')"></i></a>
+                    </div>
+                    <div class="copyrights text-center text-body-secondary">
+                        <p class="para">
+                           Copyright © 2023, designed by
+                            <a href="{% url 'main_app:home_page' %}"><span style="color: var(--primary-color-highlight); font-weight:500;text-decoration: underline; ">ND. Hospital</span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+    <!--Bootsrap-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!--aos animate-->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+          </script>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+{% extends 'main_app/base.html'%}
+{% load static%}
+{% block title %}
+Appointments
+{% endblock %}
+{% block header %}
+<style>
+    .__cards{
+    margin: 10px;
+    padding: 10px;
+    padding-left: 50px;
+    background-color: #2d4d6910 ;
+    overflow: hidden;
+    border: 5px solid #060606;;
+    border-radius: 20px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<section class="project__detail">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 mt-5">
+                <div class="intro text-center">
+                    <div class="hr-line"></div>
+                        <h1 style="font-size: 20pt;" class="diisplay-4">Your<span style="color: #325473;font-size: 30pt;">Appointments</span> </h1>
+                        
+                        <hr>
+                </div>
+            </div>
+            {% if messages %}
+                    <ul style="color:darkgreen;" class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% for appointment in appointment_user%}
+            <div class="col--6 " data-aos="fade-up" data-aos-delay="150">
+                <div class="__cards">
+                            <h4><strong>Patient name</strong>: {{appointment.user.first_name}} {{appointment.user.last_name}}</h4>
+                            <p style="font-size: 14pt;display: flex; flex-direction: row; column-gap: 70px;"><span><strong>Clinic name:</strong> : {{ appointment.clinic.name }}</span><span><strong> Department:</strong> {{ appointment.clinic.department }}</span></p>
+                            <p ><strong>Case description</strong> : {{appointment.case_description}}</p>
+                            <p ><strong>Patient age</strong> : {{appointment.patient_age}}</p>
+
+                            <small class="text-body-secondary"><p style="font-size: 14pt;"><strong>appointment datetime:</strong> : {{appointment.appointment_datetime}}</p></small>
+                        {% if request.user.is_staff %}
+                            <p ><strong>is attended?</strong> : {{appointment.is_attended}}</p>
+                            <a href="{% url 'main_app:update_appointment' appointment.id %}"><button class="btn btn-warning">Update appointment</button></a>
+                            <a href="{% url 'main_app:create_appointment' appointment.clinic.id %}"><button class="btn btn-warning">Add appointment</button></a>
+                            <a href="{% url 'main_app:delete_appointment' appointment.id %}"><button class="btn btn-warning">delete appointment</button></a>
+                            
+                        {% endif %}
+                       
+                    </div>
+                </div>
+            
+            {% endfor %}
+            </div>
+        </div>
+        <hr>
+
+    </div>
+</section>
+
+
+{% endblock %}
