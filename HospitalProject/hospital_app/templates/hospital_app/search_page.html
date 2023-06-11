@@ -1,0 +1,33 @@
+{% extends 'hospital_app/base.html' %}
+
+{% block title %}MultiMed{% endblock %}
+
+{% block content %}
+<h1 class="ps-4 mt-4">Welcome to MultiMed</h1>
+
+<h3 class="ps-4">Search results for <span class="text-success">{{request.GET.search}}</span></h3>
+<div class="d-flex flex-column gap-3 p-4 mt-4">
+    <h1>Our clinics</h1>
+    <div class="row">
+        {% for clinic in clinics %}
+            <div class="col-4 g-5">
+                <div class="card rounded-5" >
+                    <img src="{{ clinic.feature_image.url }}" class="card-img-top rounded-3" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title"> {{ clinic.name }}</h5>
+                    <div class="card-body p-0">
+                        <div class="d-flex justify-content-between p-0 m-0">
+                            <div class="d-flex gap-1 justify-content-start align-items-center">{{ clinic.department }}</div>
+                            <div>{{ clinic.established_at }}</div>
+                        </div>
+                    </div>    
+                    <a href="{% url 'hospital_app:clinic_details' clinic.id %}" class="btn btn-primary mt-3">View More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

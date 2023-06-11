@@ -1,0 +1,271 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/75ef6f1513.js" crossorigin="anonymous"></script>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <style>
+            *{
+                color: #000;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial,sans-serif;
+            
+            }
+            body{
+                background: #fff;
+            }
+            /*home content style*/
+        
+            .home{
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                background-image: url("{%static 'images/header2.png'%}");
+                background-size: cover;
+                padding: 0 10%;
+            }
+            .home_content{
+                max-width: 80%;
+            }
+            .home_content h3{
+                color: #fff;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+            .home_content h1{
+                color: #fff;
+                font-size: 70px;
+            }
+        
+            .home_content p{
+                font-size: 16px;
+                margin: 20px 0 40px;
+                width: 80%;
+                text-align: justify;
+                text-justify: inter-word;
+            }
+            .home_content .btn_box{
+                width: 345px;
+                height: 50px;
+                
+            }
+            .btn_box a{
+                position: relative;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 150px;
+                height: 100%;
+                border-bottom: 1px solid #36c0c2 ;
+                
+                font-size: 12px;
+                text-decoration: none;
+                font-weight: 600;
+                letter-spacing: 1px;
+                background:transparent;
+                color: #313132;
+                z-index: 1;
+                overflow: hidden;
+
+            }
+          
+            .btn_box a::before{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 100%;
+                background: #36c0c2;
+                transition: .5s;
+                z-index: -1;
+                transition: .5s;
+
+            }
+            .btn_box a:hover:before{
+                width: 100%;
+            }
+            
+             /*clinic content style*/
+
+            #protfolio{
+                padding: 50px 0;
+                margin-top: 50px;
+            }
+            .clinic_list{
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+                grid-gap: 40px;
+                margin-top: 50px;
+            }
+            .clinic{
+                border-radius: 10px;
+                position: relative;
+            }
+            .clinic img{
+                width: 100%;
+                border-radius: 10px;
+                display: block;
+                transition: 0.5s;
+            }
+            .layer{
+                width: 100%;
+                height: 0;
+                background: linear-gradient(rgba(0,0,0,0.5),#36c0c2);
+                border-radius: 10px;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                padding: 0 40px;
+                text-align: center;
+                font-size: 16px;
+                transition: 0.5s;
+            }
+            .layer h3{
+                font-weight: 500;
+                margin-bottom: 20px;
+                
+
+            }
+            .layer a{
+                margin-top: 20px;
+                color: #36c0c2;
+                text-decoration: none;
+                font-size: 18px;
+                line-height: 60px;
+                background: #fff;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                text-align: center;
+            }
+            .clinic:hover img{
+                transform: scale(1.1);
+
+            }
+            .clinic:hover .layer{
+                height: 100%;
+            }
+            /*Clinic details style*/
+            .clinic_details{
+                width: 100%;
+                margin: auto;
+                padding-top: 80px;
+                padding-bottom: 50px;
+
+            
+            }
+            .row h1, h5{
+                margin-left: 50px;
+            }
+            .details_left{
+                flex-basis: 50%;
+                padding: 30px 2px;
+           
+            }
+            .details_left p{
+                text-align: justify;
+                text-justify: inter-word;
+            }
+            .details_right{
+                flex-basis: 38%;
+                padding: 30px 2px;
+            }
+            .details_right img{
+                width: 100%;
+            }
+             /* fotter style*/
+             .nav .fa{
+                margin: 0 13px;
+                cursor: pointer;
+                padding: 18px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="p-3" style="background: #36c0c2;">
+            <div class="container">
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="{%url 'hospital_app:home_page'%}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                        <img width="150" height="54" src="https://websitedemos.net/multimed-04/wp-content/uploads/sites/228/2018/07/logo-regular-white-free-img-150x54.png" class="custom-logo" alt="Logo" decoding="async" loading="lazy" srcset="https://websitedemos.net/multimed-04/wp-content/uploads/sites/228/2018/07/logo-regular-white-free-img.png 1x, https://websitedemos.net/multimed-04/wp-content/uploads/sites/228/2018/07/logo-@2x-white-free-img.png 2x" sizes="(max-width: 150px) 100vw, 150px">
+                    </a>
+            
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-1 ms-2">
+                        {% if request.user.is_staff %}
+                        <!-- Example single danger button -->
+                        <li class="nav-link px-2 text-white">
+                        <div class="btn-group">
+                            <a href="#" class="dropdown-toggle text-white text-decoration-none link" data-bs-toggle="dropdown" aria-expanded="false">Managers</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'hospital_app:add_clinic' %}" class="dropdown-item">Add Clinic</a></li>
+                                <li><a href="{% url 'hospital_app:home_page' %}" class="dropdown-item">View clinics</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/admin/">Admin</a></li>
+                            </ul>
+                        </div>
+                        </li>
+                        {% endif %}
+                        <li><a href="{%url 'hospital_app:home_page'%}" class="nav-link px-2 text-white">Home</a></li>
+                        <li><a href="{%url 'hospital_app:home_page'%}" class="nav-link px-2 text-white">Clinics</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                    </ul>
+            
+                    <form action="{% url 'hospital_app:search_page' %}" method="GET" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                        <input type="search" name="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                    </form>
+            
+                    {% if request.user.is_authenticated %}
+                    <div class="d-flex gap-2 align-items-center justify-content-center">
+                        <h5 class="m-0 p-0" style="color: #fff;">Welcome {{ request.user.username }}</h5>
+                        <a href="{% url 'accounts:log_out' %}" class="btn btn-danger">Log Out</a>
+                    </div> 
+                     {% else %}
+                    <div class="text-end">
+                        <a  href="{% url 'accounts:sign_in' %}" class="btn btn-outline-light me-2">Sign In</a>
+                        <a href="{% url 'accounts:sign_up' %}" class="btn btn-warning">Sign up</a>
+                    </div>
+                     {% endif %}
+              </div>
+            </div>
+        </header>
+        
+       
+        {% block content %}
+            
+        {% endblock %}
+          
+        
+    
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <a><i class="fa fa-twitter" onclick=" window.open('#','_blank')"></i></a>
+                <a><i class="fa fa-instagram" onclick=" window.open('#','_blank')"></i></a>
+                <a><i class="fa fa-youtube" onclick=" window.open('#','_blank')"></i></a>
+                <a><i class="fa fa-linkedin" onclick=" window.open('#','_blank')"></i></a>
+            </ul>
+            <p class="text-center " style="color: #fff;">© 2023 MultiMed, Inc</p>
+          </footer>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        
+    </body>
+</html>
