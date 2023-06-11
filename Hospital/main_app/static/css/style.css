@@ -1,0 +1,12 @@
+*{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.logo{
+    font-family: 'Cedarville Cursive', cursive;
+    font-weight: bold;
+}
+
+.link-rm-line{
+    text-decoration: none;
+}

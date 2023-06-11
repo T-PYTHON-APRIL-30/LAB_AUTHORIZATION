@@ -1,0 +1,95 @@
+{% extends 'main_app/index.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- detail section -->
+    <div class="container d-flex flex-column col-xxl-8 px-4 py-5">
+        <h1 class="mb-5">{{clinic.name}}</h1>
+        <img class="rounded-5 mb-5" src="{{clinic.feature_image.url}}" />
+        <h3>{{clinic.department}}</h3>
+        <p>{{clinic.established_at}}</p>
+        <hr>
+        <p>{{clinic.description}}</p>
+    </div>
+
+    <!-- Booking section -->
+    <div class="container d-flex flex-column col-xxl-8 px-4 py-5">
+        <h4 class="mb-4">Book an appointment</h4>
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'main_app:booking_page' clinic.id %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3 w-25">
+                    <label for="exampleFormControlInput1" class="form-label">What are you suffering from?</label>
+                    <textarea class="form-control" id="exampleFormControlInput1" placeholder="description your case" name="case_description"></textarea>
+                </div>
+
+                <label for="exampleFormControlInput1" class="form-label">Choose your age:</label>
+                <select name="patient_age" class="form-select form-select-sm w-25 mb-3" aria-label=".form-select-sm example">
+                    <option selected>Choose your age</option>
+                    {% for i  in age %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Choose Date:</label>
+                    <input type="date" name="date"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">appointment time:</label>
+                    <input type="time" name="time" />
+                </div>
+
+                {% if msg %}
+                    <p class="text-danger">{{msg}}</p>
+                {% endif %}
+
+                <button class="btn btn-outline-primary" type="submit">Booking</button>
+            </form>
+        {% else %}
+            <div class="alert alert-dark" role="alert">
+                Please <a href="{% url 'users_app:register_page' %}">register</a> or <a href="{% url 'users_app:login_page' %}">log in</a> to booking an appointment!
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Appointments section -->
+    <div class="container d-flex flex-column col-xxl-8 px-4 py-5">
+        <h2>Previous Appointments</h2>
+        {% if request.user.is_authenticated %}
+            <div class="table-responsive small">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in appointment %}
+                            <tr>
+                                <td>{{appointment.id}}</td>
+                                <td>{{appointment.clinic.department}}</td>
+                                <td>{{appointment.appointment_datetime|date}}</td>
+                                <td>{{appointment.appointment_datetime|time}}</td>
+                                {% if appointment.is_attended %}
+                                    <td>Present</td>
+                                {% else %}
+                                    <td>Absent</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-dark" role="alert">
+                Please <a href="{% url 'users_app:register_page' %}">register</a> or <a href="{% url 'users_app:login_page' %}">log in</a> to see your appointment!
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
