@@ -1,0 +1,43 @@
+{% extends 'clinic_app/base.html' %}
+{% block title %} Update clinic {% endblock%}
+
+{% block content%}
+
+<h1 style="text-align: center">Update Clinic</h1>
+
+<div style="text-align: center">
+    <form action="{% url 'clinic_app:update_clinic' clinic.id %}" method="POST" style="text-align: center">
+        {% csrf_token %}
+        <div>
+            <input placeholder="clinic name" name="name" type="text">
+        </div>
+        <br>
+        <div>
+            <textarea placeholder="description" name="description"></textarea>
+        </div>
+        <br>
+        <div>
+            <input type="file" name="feature_image">
+        </div>
+        <br>
+        <div>
+            <select name="department">
+                <option value="Heart Center">Heart Center</option>
+                <option value="Neuroscience Center">Neuroscience Center</option>
+                <option value="Obesity Center">Obesity Center</option>
+                <option value="Eye Center">Eye Center</option>
+                <option value="Orthopedic Center">Orthopedic Center</option>
+                <option value="Pediatric Center">Pediatric Center</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <input type="date" name="established_at">
+        </div>
+        <br>
+        <button type="submit">Save updates</button>
+    </form>
+    <br>
+</div>
+
+{% endblock %}

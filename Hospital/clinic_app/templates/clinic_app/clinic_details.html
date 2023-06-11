@@ -1,0 +1,21 @@
+{% extends 'clinic_app/base.html' %}
+{% block title %} Clinic Details {% endblock%}
+
+{% block content %}
+
+<div style="text-align: center">
+    <h1 style="text-align: center">Clinic Details</h1>
+
+    <div style="text-align: center">
+        <h4>{{ clinic.name }}</h4>
+        <p>Description: {{ clinic.description }}</p>
+        <p>Department: {{ clinic.department }}</p>
+        <p>Established at: {{ clinic.established_at }}</p>
+    </div>
+
+    <div>
+        <a href="{% url 'clinic_app:update_clinic' clinic.id %}">Update clinic</a><br>
+    </div>
+</div>
+
+{% endblock %}

@@ -35,3 +35,17 @@ def search(request:HttpRequest):
     search_results = request.GET.get("search", "")
     clinic = Clinic.objects.filter(name__contains=search_results)
     return render(request, "clinic_app/search.html", {"clinics":clinic})
+
+def update_clinic(request:HttpRequest, clinic_id):
+    clinic = Clinic.objects.get(id=clinic_id)
+    if request.method == "POST":
+        clinic.name = request.POST['name']
+        clinic.feature_image = request.POST['feature_image']
+        clinic.description = request.POST["description"]
+        clinic.department = request.POST["department"]
+        clinic.established_at = request.POST["established_at"]
+        clinic.save()
+        return redirect("clinic_app:clinic_details", clinic_id=clinic.id)
+    else:
+        return render(request, 'clinic_app/update_clinic.html', {"clinic":clinic})
+

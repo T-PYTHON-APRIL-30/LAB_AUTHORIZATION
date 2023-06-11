@@ -4,6 +4,7 @@
 {% block content %}
 
 <h1 style="text-align: center">Add Clinic</h1>
+
 <form method="POST" style="text-align: center">
     {% csrf_token %}
     <div>
@@ -27,7 +28,7 @@
             <option value="Orthopedic Center">Orthopedic Center</option>
             <option value="Pediatric Center">Pediatric Center</option>
         </select>
-ƒ    </div>
+    </div>
     <br>
     <div>
         <input type="date" name="established_at">
