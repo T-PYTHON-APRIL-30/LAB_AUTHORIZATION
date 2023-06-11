@@ -7,6 +7,7 @@
 {% if msg %}
 <p>{{msg}}</p>
 {% endif %}
+
 <form style="text-align: center" action="{% url 'accounts:signin' %}" method="POST">
     {% csrf_token %}
 
@@ -20,5 +21,10 @@
     <br>
     <button type="submit">Sign in</button>
 </form>
+
+<br>
+<div style="text-align: center">
+    <a href="{% url 'accounts:signup' %}">Sign up</a>
+</div>
 
 {% endblock %}
