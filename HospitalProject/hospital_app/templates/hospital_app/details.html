@@ -27,7 +27,7 @@
 {% if request.user.is_authenticated %}
 <div class="container d-flex flex-column gap-3">
     <h2>Previous Appointment</h2>
-    {% for appointment in appointments %}
+    {% for appointment in appointment_user %}
 
     <div class="d-flex flex-column p-4 border border-1 rounded-5 gap-1">
         <h6>Patient: {{appointment.user.username}}</h6>
@@ -77,7 +77,7 @@
         </div>
         {% endif %}
 
-        <input type="submit" class="btn btn-primary" value="Book" />
+        <input type="submit" class="btn"  style="width:10% ; background-color: #36c0c2; color: #fff;" value="Book" />
 
     </form>
     {% else %}

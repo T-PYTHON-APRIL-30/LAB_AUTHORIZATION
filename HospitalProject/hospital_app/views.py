@@ -11,9 +11,13 @@ def home_page(request :HttpRequest):
 
 def clinic_details(request :HttpRequest,clinic_id):
     clinic = Clinic.objects.get(id=clinic_id)
-    appointments = Appointment.objects.filter(clinic=clinic)
+    
+    if not (request.user.is_staff):
+        appointment_user = Appointment.objects.filter(user=request.user, clinic=clinic)
+    else:
+        appointment_user = Appointment.objects.all()
 
-    return render(request,"hospital_app/details.html",{'clinic':clinic, 'appointments':appointments})
+    return render(request,"hospital_app/details.html",{'clinic':clinic, 'appointment_user':appointment_user})
 
 def appointment_details(request :HttpRequest,appointment_id):
     appointment = Appointment.objects.get(id=appointment_id)
@@ -56,6 +60,7 @@ def update_clinic(request:HttpRequest, clinic_id):
 def update_appointment(request:HttpRequest, appointment_id):
 
     appointment = Appointment.objects.get(id=appointment_id)
+    iso_date = appointment.appointment_datetime.isoformat()
     #updating the clinic
     if request.method == "POST":
         appointment.case_description = request.POST["case_description"]
@@ -66,16 +71,27 @@ def update_appointment(request:HttpRequest, appointment_id):
 
         return redirect("hospital_app:appointment_details", appointment_id=appointment.id)
 
-    return render(request, 'hospital_app/update_appointment.html', {"appointment" : appointment})
+    return render(request, 'hospital_app/update_appointment.html', {"appointment" : appointment,"iso_date" : iso_date})
 
 def delete_clinic(request:HttpRequest, clinic_id):
 
-    # #check that user is staff and has a permission to delete
-    # if not (request.user.is_staff and  request.user.has_perm("main_app.delete_game")):
-    #     return redirect("accounts:no_permission_page")
+    #check that user is staff and has a permission to delete
+    if not (request.user.is_staff and  request.user.has_perm("hospital_app.delete_clinic")):
+        return redirect("accounts:no_permission_page")
     
     clinic = Clinic.objects.get(id=clinic_id)
     clinic.delete()
+
+    return redirect("hospital_app:home_page")
+
+def delete_appointment(request:HttpRequest, appointment_id):
+
+    #check that user is staff and has a permission to delete
+    if not (request.user.is_staff and  request.user.has_perm("hospital_app.delete_appointment")):
+        return redirect("accounts:no_permission_page")
+    
+    appointment = Appointment.objects.get(id=appointment_id)
+    appointment.delete()
 
     return redirect("hospital_app:home_page")
         
