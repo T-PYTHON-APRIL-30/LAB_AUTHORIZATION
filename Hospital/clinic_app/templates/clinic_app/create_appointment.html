@@ -5,10 +5,10 @@
 
 <h1 style="text-align: center">Create Appointment</h1>
 
-<form method="POST" style="text-align: center">
+<form action="{% url 'clinic_app:create_appointment' clinic.id %}" method="POST" style="text-align: center">
     {% csrf_token %}
     <div>
-        <input placeholder="date" name="appointment_datetime" type="datetime">
+        <input placeholder="date" name="appointment_datetime" type="datetime-local">
     </div>
     <br>
     <div>

@@ -57,12 +57,15 @@ def appointment_page(request:HttpRequest, clinic_id):
     appointments = Appointment.objects.filter(clinic=clinic).order_by('appointment_datetime')
     return render(request, 'clinic_app/appointment.html', {'clinic': clinic, 'appointments': appointments})
 
-def create_appointment(request:HttpRequest):
+def create_appointment(request:HttpRequest, clinic_id):
+
+    clinic = Clinic.objects.get(id=clinic_id)
     if request.method == 'POST':
         Acase_description = request.POST['case_description']
         Apatient_age = request.POST['patient_age']
         Aappointment_datetime = request.POST["appointment_datetime"]
-        new_appointment = Appointment(case_description=Acase_description, patient_age=Apatient_age, appointment_datetime=Aappointment_datetime)
+        new_appointment = Appointment(user=request.user, clinic=clinic, case_description=Acase_description, patient_age=Apatient_age, appointment_datetime=Aappointment_datetime)
         new_appointment.save()
-        return redirect('clinic_app:appointment')
-    return redirect("clinic_app:create_appointment")
+        return redirect('clinic_app:appointment', clinic_id=clinic.id)
+    
+    return render(request, 'clinic_app/create_appointment.html', {"clinic":clinic})

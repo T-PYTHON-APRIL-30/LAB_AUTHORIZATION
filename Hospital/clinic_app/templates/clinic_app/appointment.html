@@ -30,7 +30,7 @@
 </table>
 <br>
 <div style="text-align: center">
-    <a href="{% url 'clinic_app:create_appointment' %}">Create appointment</a>
+    <a href="{% url 'clinic_app:create_appointment' clinic.id%}">Create appointment</a>
 </div>
 
 {% endblock %}
