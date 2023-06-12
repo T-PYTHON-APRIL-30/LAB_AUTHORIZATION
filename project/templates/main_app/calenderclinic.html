@@ -1,0 +1,67 @@
+
+{% extends 'main_app/home.html' %}
+{%load static%}
+{% block title%}Art{%endblock%}
+{%block content%}
+            <section class="banner-section d-flex justify-content-center align-items-end">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-7 col-12">
+                            <h1 class="text-white mb-lg-0">Details </h1>
+                        </div>
+
+                        <div class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">Art</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+           
+            <section class="section-padding section-bg">
+                <div class="container">
+                  
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {%for clinic in add_cli%}
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>{{clinic.name}}</td>
+                            <td>{{clinic.description}}</td>
+                            <td>{{clinic.name}}</td>
+                          </tr>
+                           {%endfor%}
+                        </tbody>
+                      
+                      </table>
+                     
+
+
+
+
+
+               
+                </div>
+            </section>
+        </main>
+        {%endblock%}

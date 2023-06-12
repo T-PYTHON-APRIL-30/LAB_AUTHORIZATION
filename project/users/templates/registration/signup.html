@@ -1,0 +1,87 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+
+</head>
+
+<body class=" text-left" >
+<div class="content-wrapper pr-5 pl-5 pt-5" >
+    <div class="login-box" style="margin: 0 auto;">
+    <div class="login-logo">
+      <a href=""><b></b></a>
+    </div>
+    <br>
+    <!-- /.login-logo -->
+    <div class="card col-lg-12">
+      <div class="card-body  login-card-body">
+        <p class="login-box-msg">Sign Up</p>
+  
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-outline mb-4 text-right">
+                <input type="text" name="first_name" class="form-control form-control-lg p-1" placeholder=" First Name" />
+              </div>
+
+
+              <div class="form-outline mb-4  text-right" >
+                <input type="email" name="email" class="form-control form-control-lg p-1" placeholder="Email" />
+              </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" name="username"  placeholder="Username" id="id_username">
+          </div>
+          <div class="input-group mb-3">
+            <input class="form-control" placeholder="Password" type="password" name="password1"  id="id_password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input class="form-control" placeholder="Confirm Password" type="text" name="password2"  id="id_password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            
+            <!-- /.col -->
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+        <br>
+
+
+        <p class="mb-0">
+          <a href="{% url 'users:login' %}" class="text-center">Have an account</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+        
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <script>
+      $('#datepicker1').datepicker({
+          uiLibrary: 'bootstrap4'
+      });
+      $('#datepicker2').datepicker({
+          uiLibrary: 'bootstrap4'
+      });
+  </script>
+  <!-- ============ Search UI End ============= -->
+
+</body>
+
+</html>

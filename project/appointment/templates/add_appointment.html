@@ -1,0 +1,54 @@
+{% extends 'main_app/home.html' %}
+{%load static%}
+
+{% load bootstrap4 %}
+
+
+{%block content%}
+            <section class="banner-section d-flex justify-content-center align-items-end">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-7 col-12">
+                            <h1 class="text-white mb-lg-0">Add</h1>
+                        </div>
+
+                        <div class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">Add</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="contact-section section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <form class="custom-form consulting-form bg-white shadow-lg mb-5 mb-lg-0" action="#" method="POST" role="form" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="consulting-form-header d-flex align-items-center">
+                                    <h3 class="mb-4">Add a New {% load bootstrap4 %}
+</h3>
+                                </div>
+                                {% bootstrap_form appointment_form %}
+                                <div class="col-lg-6 col-md-10 col-8 mx-auto">
+                                    <button type="submit" class="form-control">Add</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+        {%endblock%}

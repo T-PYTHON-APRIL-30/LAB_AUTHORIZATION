@@ -1,0 +1,59 @@
+
+{% extends 'main_app/home.html' %}
+{%load static%}
+{% block title%}Animals{%endblock%}
+
+{%block content%}
+
+
+            <section class="banner-section d-flex justify-content-center align-items-end">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-7 col-12">
+                            <h1 class="text-white mb-lg-0">Details </h1>
+                        </div>
+
+                        <div class="col-lg-4 col-12 d-flex justify-content-lg-end align-items-center ms-auto">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">Details</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <div class="table-wrapper">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol> <!-- Wrapper for carousel items -->
+                    <div class="carousel-inner">
+                        
+                        <div class="item carousel-item active">
+                            <br>
+                            <div  class="img-box"><img src="{% static 'images/heart.png'%}" alt=""></div>
+                            <br>
+                            <p class="overview"><b>Clinic Name</b>Creates at: </p>
+                            <p class="testimonial">description for clinic</p>
+                            <p class="overview"><b>Doctor name</b> </p>
+                            <div class="star-rating"> 
+                                <li class="material-symbols-outlined"><a href="">arrow_right_alt</a></li>
+                            </div>
+                        </div>
+                    </div> 
+                    </a>
+                </div> 
+              </div>
+        </main>
+        {%endblock%}

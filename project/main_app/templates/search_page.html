@@ -1,0 +1,127 @@
+{% extends 'main_app/home.html' %}
+{%load static%}
+
+{%block content%}
+
+
+
+<br>
+         
+
+          
+
+            <section class="services-section section-padding section-bg" id="services-section">
+
+
+
+                            
+{% block clinic %}
+<div class="container-fluid">
+    <main class="tm-main">
+        <!-- Search form -->
+        <div class="row tm-row">
+            <div class="col-12">
+     
+
+                    <h3>Search results for <span class="text-success">{{request.GET.query}}</span></h3>                                           
+                
+            </div>                
+        </div>      
+      
+       
+       
+        <div class="row tm-row">
+            <div class="col-12">
+                <form  action="{% url 'main_app:search_page'%}" role="search"  method="GET" class="form-inline tm-mb-80 tm-search-form">                
+                    <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                                             
+                </form>
+            </div>                
+        </div>            
+    
+
+
+        <div class="col-lg-12 col-12">
+            <h2 class="mb-4">Our Clinics</h2>
+        </div>
+        {% for clinic in clinics %}
+            <div class="col-lg-6 col-12">
+                <div class="services-thumb">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-12">
+                            <div class="services-image-wrap">
+                                <a href="#">
+                                    {% if clinic.feature_image %}
+                                    <img src="{{clinic.feature_image.url}}" class="services-image img-fluid" alt="">
+                                   {% else %}
+                                   <img src="" class="services-image img-fluid" alt="">
+
+                                    {% endif %}
+                                    <div class="services-icon-wrap">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="text-white mb-0">
+                                                <i></i>
+                                            
+                                            </p>
+
+                                            <p class="text-white mb-0">
+                                                <i></i>
+                                            
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
+                            <div class="services-info mt-4 mt-lg-0 mt-md-0">
+                                <h4 class="services-title mb-1 mb-lg-2">
+                                    <a class="services-title-link" href="#">{{clinic.department}}</a>
+                                </h4>
+
+                                <p>{{clinic.discription}}</p>
+
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="reviews-icons">
+                                        <i class="bi-star-fill"></i>
+                                        <i class="bi-star-fill"></i>
+                                        <i class="bi-star-fill"></i>
+                                        <i class="bi-star-fill"></i>
+                                        <i class="bi-star-fill"></i>
+                                    </div>
+            
+
+                                    <a href="{% url 'main_app:clinic_detail' clinic.id %}" class="custom-btn btn button button--atlas mt-2 ms-auto">
+                                        <span>Read More</span>
+
+                                        
+                                    </a>
+                                    <a href="{% url 'appointment:appointment_list_category' clinic.department %}" class="custom-btn btn button button--atlas mt-2 ms-auto">
+                                        <span>All Appointments</span>
+
+                                        
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+     
+
+
+    </div>
+</div>
+</section>
+
+{%endblock%}
+                       
+                    </div> 
+                    </a>
+                </div> 
+              </div>
+        </main>
+        {%endblock%}
+         
