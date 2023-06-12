@@ -53,7 +53,9 @@
                             <a href="https://web.whatsapp.com/" class="text-white">
                                 +966 653 998 0980  
                             </a>
-                   
+                            
+                         
+
                         </p>
                     </div>
 
@@ -80,6 +82,13 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{% url 'main_app:home' %}">Home</a>
                         </li>
+                        
+
+
+
+
+
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="">About Us</a>
@@ -99,24 +108,33 @@
                             </ul>
                         </li>
 
-                        {% comment %} <li class="nav-item">
-                            <a class="nav-link" href="">Contact</a>
-                        </li> {% endcomment %}
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="">   Welcome, {{ request.user.username }}!</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:logout' %}">  Log Out</a>
+                        </li> 
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}">   Log in</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}">   Sign Up</a>
+                        </li> 
+                        {% endif %}
+
+
+
+
+
+                        {% if request.user.is_superuser %}
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'main_app:add_clinic' %}">Add Clinic</a>
                         </li>
-                        {% if request.user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'accounts:logout' %}"> Welcome  {{ request.user.username }}</a>
-                            <a class="nav-link" href="{% url 'accounts:logout' %}">log out</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'accounts:login' %}">sign in</a>
-                            <a class="nav-link" href="{% url 'accounts:login' %}">sign up</a>
-                        </li>
                         {% endif %}
-                  
+
                     </ul>
                 </div>
             </div>  
@@ -136,7 +154,7 @@
             </section>
             
 
-          <br>
+            <br>
             <br><br>
             <br><br>
             <br><br>
@@ -178,14 +196,27 @@
                 </div>
             </section>
 
+            <br><br><br><br>
+
             
+            
+          
 
             <section class="services-section section-padding section-bg" id="services-section">
+                {% block clinic%}
+                <div class="row tm-row">
+                    <div class="col-12">
+                        <form action="{% url 'main_app:search_page'%}" method="GET" class="form-inline tm-mb-80 tm-search-form">                
+                            <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                                                      
+                        </form>
+                    </div>                
+                </div>            
                 <div class="container">
                     <div class="row">
 
                         <div class="col-lg-12 col-12">
-                            <h2 class="mb-4">Our Clinics</h2>
+                            <h2 class="mb-4">Our best offers</h2>
                         </div>
                         {% for clinic in clinic_list %}
                             <div class="col-lg-6 col-12">
@@ -234,17 +265,20 @@
                                                         <i class="bi-star-fill"></i>
                                                     </div>
                             
-
                                                     <a href="{% url 'main_app:clinic_detail' clinic.id %}" class="custom-btn btn button button--atlas mt-2 ms-auto">
                                                         <span>Read More</span>
 
-                                                        
+
                                                     </a>
+                                                  
+                                                    {% if  perms.appointment.change_appointment and perms.appointment.delete_appointment %}
+
                                                     <a href="{% url 'appointment:appointment_list_category' clinic.department %}" class="custom-btn btn button button--atlas mt-2 ms-auto">
-                                                        <span>All Appointments</span>
+                                                        <span>All Apointments</span>
 
                                                         
                                                     </a>
+                                                    {%endif%}
                                                 </div>
                                             </div>
                                         </div>
@@ -257,6 +291,8 @@
                     </div>
                 </div>
             </section>
+            {%endblock%}
+
             <section class="testimonial-section section-padding section-bg">
                 <div class="section-overlay"></div>
                 <div class="container">

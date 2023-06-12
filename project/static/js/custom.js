@@ -6,7 +6,7 @@
     });
     $('.hero-section').backstretch([
     
-      "/static/images/slideshow/1.jpg",
+      "/static/images/slideshow/1.jpeg",
       "/static/images/slideshow/2.jpeg",
       "/static/images/slideshow/3.jpeg"
     ],  {duration: 2000, fade: 750});

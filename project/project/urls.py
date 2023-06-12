@@ -6,7 +6,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
+    path('accounts/' , include('users.urls' ,  namespace='users')),
     path('', include('main_app.urls')),
     path('appointment/', include('appointment.urls')),
 ]

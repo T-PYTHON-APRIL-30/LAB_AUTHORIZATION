@@ -12,23 +12,23 @@
 <div class="content-wrapper pr-5 pl-5 pt-5" >
     <div class="login-box" style="margin: 0 auto;">
     <div class="login-logo">
-      <a href=""><b>أهلا بك فى موقع </b></a>
+      <a href=""><b></b></a>
     </div>
     <br>
     <!-- /.login-logo -->
     <div class="card col-lg-12">
       <div class="card-body  login-card-body">
-        <p class="login-box-msg">التسجيل فى الموقع </p>
+        <p class="login-box-msg">Sign Up</p>
   
         <form action="" method="POST">
             {% csrf_token %}
             <div class="form-outline mb-4 text-right">
-                <input type="text" name="first_name" class="form-control form-control-lg p-1" placeholder="الاسم الاول" />
+                <input type="text" name="first_name" class="form-control form-control-lg p-1" placeholder=" First Name" />
               </div>
 
 
               <div class="form-outline mb-4  text-right" >
-                <input type="email" name="email" class="form-control form-control-lg p-1" placeholder="البريد الاليكترونى" />
+                <input type="email" name="email" class="form-control form-control-lg p-1" placeholder="Email" />
               </div>
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="username"  placeholder="Username" id="id_username">
@@ -53,7 +53,7 @@
             
             <!-- /.col -->
             <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-block">سجل الأن</button>
+              <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
             </div>
             <!-- /.col -->
           </div>
@@ -62,7 +62,7 @@
 
 
         <p class="mb-0">
-          <a href="{% url 'users:login' %}" class="text-center">لديك حساب ؟</a>
+          <a href="{% url 'users:login' %}" class="text-center">Have an account</a>
         </p>
       </div>
     </div>

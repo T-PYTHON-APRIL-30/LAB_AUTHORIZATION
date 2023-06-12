@@ -1,5 +1,5 @@
 
-{% extends 'base.html' %}
+
 {% load static %}
 
 {% block 'body' %}
@@ -8,7 +8,7 @@
     <!-- ============ Body content start ============= -->
     <div class="main-content">
         <div class="breadcrumb justify-content-between">
-            <h1 class="mr-2">المستخدمين</h1>
+            <h1 class="mr-2">users</h1>
             {% comment %} <form action="" class="d-flex">
                 <input type="text" class="form-control form-control-sm">
                 <input type="submit" value="بحث">
@@ -28,14 +28,14 @@
                                     <table class="table text-center" id="user_table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">الرقم التعريفي</th>
-                                                <th scope="col">الاسم</th>
-                                                <th scope="col">الصوره</th>
-                                                <th scope="col">البريد الاليكترونى</th>
-                                                <th scope="col">رقم الهاتف</th>
-                                                <th scope="col">المدينة</th>
-                                                <th scope="col">العنوان</th>
-                                                <th scope="col">الاجراءات</th>
+                                                <th scope="col">id</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">photo</th>
+                                                <th scope="col">gmail</th>
+                                                <th scope="col">phone number</th>
+                                                <th scope="col">city</th>
+                                                <th scope="col">adress</th>
+                                                <th scope="col">process</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -53,7 +53,7 @@
                                                     {% if user.email %}
                                                     <td>{{user.email}}</td>
                                                     {% else %}
-                                                    <td>لا يوجد بريد</td>
+                                                    <td>no there gmail</td>
                                                         
                                                     {% endif %}
                                                         

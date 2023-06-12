@@ -23,13 +23,13 @@
 <div class="content-wrapper pr-5 pl-5 pt-5" >
     <div class="login-box" style="margin: 0 auto;">
     <div class="login-logo">
-      <a href=""><b>أهلا بك فى موقع </b></a>
+      <a href=""><b></b></a>
     </div>
     <br>
     <!-- /.login-logo -->
     <div class="card col-lg-12">
       <div class="card-body  login-card-body">
-        <p class="login-box-msg">تسجيل الدخول</p>
+        <p class="login-box-msg">Sign IN</p>
   
         <form action="" method="POST">
             {% csrf_token %}
@@ -48,7 +48,7 @@
             
             <!-- /.col -->
             <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-block">دخول</button>
+              <button type="submit" class="btn btn-primary btn-block">Log in</button>
             </div>
             <!-- /.col -->
           </div>
@@ -57,11 +57,9 @@
 
         <!-- /.social-auth-links -->
   
-        <p class="mb-1">
-          <a href="">نسيت كلمة المرور</a>
-        </p>
+        
         <p class="mb-0">
-          <a href="" class="text-center">ليس لديك حساب</a>
+          <a href="{% url 'users:signup' %}" class="text-center">Don't have an account</a>
         </p>
       </div>
       <!-- /.login-card-body -->

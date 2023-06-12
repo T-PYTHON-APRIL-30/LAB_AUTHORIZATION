@@ -37,12 +37,12 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">الاسم</th>
-                            <th scope="col">العمر</th>
-                            <th scope="col">الوصف</th>
-                            <th scope="col">رقم الهاتف</th>
-                            <th scope="col">ميعاد الحجز</th>
-                            <th scope="col">حالة الحجز</th>
+                            <th scope="col">Name </th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Case Dwscriptions</th>
+                            <th scope="col"> Phone Number</th>
+                            <th scope="col">Time Appointment</th>
+                            <th scope="col">Status Appointment</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -56,9 +56,9 @@
                             <td>{{appointment.phone_number}}</td>
                             <td>{{appointment.appointment_datetime}}</td>
                             {% if appointment.is_attended %}
-                            <td>تم الحجز
+                            <td>Done
                           {% else %}
-                            فى الانتظار
+                            Pending
                           {% endif %}                            
 
                                <form method="POST">
@@ -68,14 +68,14 @@
                                                     <td>
                                                     
                                                         <button  class="btn btn-outline-success"  style="width: 50px; height: 15;"  id="appointmenupdate" name="appointmenupdate">
-                                                            قبول
+                                                            Accept
                                                         </button>
                                                     </td>
 
                                                         <td>
 
                                                         <button  class="btn btn-outline-danger" style="width: 50px; height: 15;" id="appointmendelete" name="appointmendelete">
-                                                            مسح
+                                                           Refuse
                                                         </button>
 
                                                     </td>

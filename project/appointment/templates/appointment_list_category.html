@@ -37,12 +37,12 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Name </th>
                             <th scope="col">Age</th>
-                            <th scope="col">Case Description</th>
-                            <th scope="col">Phone Number</th>
+                            <th scope="col">Case Dwscriptions</th>
+                            <th scope="col"> Phone Number</th>
                             <th scope="col">Time Appointment</th>
-                            <th scope="col">statuis Appointment</th>
+                            <th scope="col">Status Appointment</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -56,9 +56,9 @@
                             <td>{{appointment.phone_number}}</td>
                             <td>{{appointment.appointment_datetime}}</td>
                             {% if appointment.is_attended %}
-                            <td>Reservation done</td>
+                            <td>Done</td>
                           {% else %}
-                          <td>   waiting  </td>
+                          <td>  pending</td>
                           {% endif %}                            
 
                                <form method="POST">
@@ -68,14 +68,14 @@
                                                     <td>
                                                     
                                                         <button  class="btn btn-outline-success"  style="width: 50px; height: 15;"  id="appointmenupdate" name="appointmenupdate">
-                                                            Accept
+                                                           Accept
                                                         </button>
                                                     </td>
 
                                                         <td>
 
                                                         <button  class="btn btn-outline-danger" style="width: 50px; height: 15;" id="appointmendelete" name="appointmendelete">
-                                                            refused
+                                                            refuse
                                                         </button>
 
                                                     </td>
