@@ -26,11 +26,6 @@
 
 
 
-
-
-
-
-
 <div class="container mt-3">
     <h3>Book Appointment</h3>
 
@@ -57,6 +52,8 @@
 
         <div class="mb-3">
             <input type="submit" value="Book Appointment" class="btn btn-primary" />
+            <a href="{% url 'main_app:view_appointment' clinic.id %}" class="btn btn-warning">View Appointment</a>
+
         </div>
 
     </form>

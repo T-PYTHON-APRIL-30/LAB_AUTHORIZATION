@@ -65,7 +65,27 @@ def book_appointment(request:HttpRequest, clinic_id):
 
     return redirect("main_app:detail", clinic_id=clinic_id)
 
+def view_appointment(request:HttpRequest, clinic_id):
+
+    try:
+        clinic = Clinic.objects.get(id=clinic_id)
+        appointments = Appointment.objects.filter(clinic=clinic)
+    except:
+        return render(request, 'main_app/not_found.html')
+
+    return render(request, 'main_app/view_appointment.html', {"clinic" : clinic, "appointments" : appointments})
 
 
 
 
+
+def delete_appointment(request:HttpRequest, clinic_id):
+    if not (request.user.is_staff and request.user.has_perm("main_app.add_update_clinic")):
+        return redirect("users_app:no_permission_page")
+    
+    clinic = Clinic.objects.get(id=clinic_id)
+    appointments = Appointment.objects.filter(clinic=clinic)
+
+    appointments.delete()
+
+    return redirect("main_app:index_page")

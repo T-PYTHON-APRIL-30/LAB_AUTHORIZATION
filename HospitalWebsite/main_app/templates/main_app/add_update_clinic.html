@@ -37,9 +37,15 @@
             <label for="exampleFormControlInput1" class="form-label">Department</label>
             <select class="form-select" name="department" id="inputGroupSelect01">
                 <option selected>Choose</option>
-                {% for choose in clinic.department.choices.value %}
-                <option value="{{choose}}">{{choose}}</option>
-                {% endfor %}
+                
+                <option value="Heart Center">Heart Center</option>
+                <option value="Neuroscience Center">Neuroscience Center</option>
+                <option value="Obesity Center">Obesity Center</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+
+               
             </select>
         </div>
 
