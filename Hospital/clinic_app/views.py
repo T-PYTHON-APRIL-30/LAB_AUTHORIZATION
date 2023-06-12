@@ -40,7 +40,7 @@ def update_clinic(request:HttpRequest, clinic_id):
     clinic = Clinic.objects.get(id=clinic_id)
     if request.method == "POST":
         clinic.name = request.POST['name']
-        clinic.feature_image = request.POST['feature_image']
+        clinic.feature_image = request.FILES['feature_image']
         clinic.description = request.POST["description"]
         clinic.department = request.POST["department"]
         clinic.established_at = request.POST["established_at"]
@@ -61,11 +61,8 @@ def create_appointment(request:HttpRequest):
     if request.method == 'POST':
         Acase_description = request.POST['case_description']
         Apatient_age = request.POST['patient_age']
-        Adescription = request.POST["description"]
         Aappointment_datetime = request.POST["appointment_datetime"]
-        Ais_attended = request.POST["is_attended"]
-        new_appointment = Appointment(case_description=Acase_description, patient_age=Apatient_age, description=Adescription, appointment_datetime=Aappointment_datetime, is_attended=Ais_attended)
+        new_appointment = Appointment(case_description=Acase_description, patient_age=Apatient_age, appointment_datetime=Aappointment_datetime)
         new_appointment.save()
         return redirect('clinic_app:appointment')
-    else:
-        return redirect("clinic_app:create_appointment")
+    return redirect("clinic_app:create_appointment")
