@@ -79,13 +79,12 @@ def view_appointment(request:HttpRequest, clinic_id):
 
 
 
-def delete_appointment(request:HttpRequest, clinic_id):
+def delete_appointment(request:HttpRequest, appointment_id):
     if not (request.user.is_staff and request.user.has_perm("main_app.add_update_clinic")):
         return redirect("users_app:no_permission_page")
     
-    clinic = Clinic.objects.get(id=clinic_id)
-    appointments = Appointment.objects.filter(clinic=clinic)
+    appointment = Appointment.objects.get(id=appointment_id)
 
-    appointments.delete()
+    appointment.delete()
 
     return redirect("main_app:index_page")

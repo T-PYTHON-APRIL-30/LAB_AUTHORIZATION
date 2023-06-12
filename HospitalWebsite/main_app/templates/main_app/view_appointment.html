@@ -17,7 +17,7 @@
 
     <div class="d-flex gap-2">
         {% if request.user.is_staff %}
-        <a href="{% url 'main_app:delete_appointment' clinic.id %}" class="btn btn-danger">Delete Appointment</a>
+        <a href="{% url 'main_app:delete_appointment' appointment_id=appointment.id   %}" class="btn btn-danger">Delete Appointment</a>
         {% endif %}
 
     </div>
