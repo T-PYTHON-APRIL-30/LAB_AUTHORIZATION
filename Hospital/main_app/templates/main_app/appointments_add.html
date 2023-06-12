@@ -1,0 +1,59 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex align-items-center">
+            
+                <div class="container mb-5">
+                    <form action="{% url 'main_app:appointments_add' %}" method="POST" class="align-items-center justify-content-center">
+                        {% csrf_token %}
+                        <h1>Add Appointment</h1>
+
+                        <label for="exampleFormControlInput1" class="form-label">Name</label>
+                        <select name="user" class="form-select" aria-label="Default select example">
+                            <option selected>Name</option>
+                            {% for user in user %}
+                                <option value="{{user.id}}">{{user.username}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label for="exampleFormControlInput1" class="form-label">Age:</label>
+                        <select name="patient_age" class="form-select" aria-label="Default select example">
+                            <option selected>Age</option>
+                            {% for i  in age %}
+                                <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label for="exampleFormControlInput1" class="form-label">Clinic:</label>
+                        <select name="clinic" class="form-select" aria-label="Default select example">
+                            <option selected>clinic</option>
+                            {% for clinic in clinic %}
+                                <option value="{{clinic.id}}">{{clinic.name}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <div class="mb-3">
+                            <span class="input-group-text">Description:</span>
+                            <textarea class="form-control" name="case_description" aria-label="With textarea"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Date:</label>
+                            <input type="date" name="date"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Time:</label>
+                            <input type="time" name="time" />
+                        </div>
+                        <br>
+
+                        <button class="btn btn-primary" type="submit" >Add</button>
+                    </form>
+                </div>
+          
+        </div>
+    </div>
+{% endblock %}

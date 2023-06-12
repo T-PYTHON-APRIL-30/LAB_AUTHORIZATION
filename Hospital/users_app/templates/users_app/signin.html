@@ -1,0 +1,29 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="d-flex align-items-center">
+            <div class="container mb-5">
+                <form action="{% url 'users_app:signin' %}" method="POST" class="align-items-center justify-content-center">
+                    {% csrf_token %}
+                    <h1 class="mb-3">Sign in</h1>
+
+                    {% if msg %}
+                        <p>{{msg}}</p>
+                    {% endif %}
+
+                    <div class="container">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="Username">
+                    </div>
+                    <div class="container">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                    <br>
+
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </form>
+            </div>
+    </div>
+{% endblock %}

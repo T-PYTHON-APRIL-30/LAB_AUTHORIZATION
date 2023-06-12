@@ -1,0 +1,33 @@
+{% extends 'main_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h2>Appointments</h2>
+    <div class="container" style="display: flex;">
+            {% for appointment in appointment %}
+                <ul class="row">
+                    <p>{{ appointment.clinic.name }}</p>
+                    <p>{{ appointment.clinic.department }}</p>
+                    <p>{{ appointment.id }}</p>
+                    <p>{{ appointment.user.username }}</p>
+                    <p>{{ appointment.case_description }}</p>
+                    <p>{{ appointment.patient_age }}</p>
+                    <p>{{ appointment.appointment_datetime|date }}</p>
+                    <p>{{ appointment.appointment_datetime|time }}</p>
+                    {% if appointment.is_attended %}
+                        <p>Present</p>
+                    {% else %}
+                        <p>Absent</p>
+                    {% endif %}
+                    <div>
+                        <a href="{% url 'main_app:appointments_update' appointment.id %}" class="btn btn-warning">Update</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'main_app:appointments_delete' appointment.id %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+  <h1>{{ clinic.name }}</h1>
+  <img src="{{ clinic.feature_image.url }}" alt="">
+  <p>{{ clinic.description }}</p>
+  <p>Department: {{ clinic.department }}</p>
+  <p>Date: {{ clinic.established_at }}</p>
+
+  <h2>Appointments:</h2>
+  {% if appointment %}
+    <ul>
+      {% for appointment in appointment %}
+        <li>{{ appointment.appointment_datetime }}</li> 
+        <li>{{ appointment.user }}</li> 
+        <li>{{ appointment.case_description }}</li>
+      {% empty %}
+        <li>No appointments found.</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No appointments found.</p>
+  {% endif %}
+{% endblock %}

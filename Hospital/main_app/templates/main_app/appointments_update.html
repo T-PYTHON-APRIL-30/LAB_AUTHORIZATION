@@ -1,0 +1,46 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex align-items-center">
+                <div class="container mb-5">
+                    <form action="{% url 'main_app:appointments_update' appointment.id %}" method="POST" class="align-items-center justify-content-center">
+                        {% csrf_token %}
+                        <h1 class="mb-3">Update {{appointment.user.username}} Appointment</h1>
+
+                        <div class="mb-3">
+                            <span class="input-group-text">Description</span>
+                            <textarea class="form-control" name="case_description" aria-label="With textarea">{{appointment.case_description}}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Date</label>
+                            <input type="date" name="date" value="date" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Time:</label>
+                            <input type="time" name="time" value="time" />
+                        </div>
+
+                        <div class="form-check">
+                            <input name="is_attended" class="form-check-input" type="radio" value="True" id="flexCheckDefault" {% if appointment.is_attended == True %} checked {% endif %}>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Present
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input name="is_attended" class="form-check-input" type="radio" value="False" id="flexCheckChecked" {% if appointment.is_attended == False %} checked {% endif %}>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Absent
+                            </label>
+                        </div>
+                        <br>
+
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+{% endblock %}

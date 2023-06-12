@@ -1,0 +1,181 @@
+{% load static %}
+        
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="Tooplate">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+        <title>Hospital</title>
+        
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'css/tooplate-style.css' %}">
+
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+     <!-- HEADER -->
+     <header>
+          <div class="container">
+              <div class="row">
+                <div class="col-md-4 col-sm-5">
+                     <p>Welcome to a Professional Health Care</p>
+                </div>     
+                <div class="col-md-8 col-sm-7 text-align-right">
+                     <span class="phone-icon"><i class="fa fa-phone"></i> 011-066-5456</span>
+                     <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 AM - 10:00 PM (Sun-Thur)</span>
+                     <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#">info@company.com</a></span>
+                </div
+              </div>
+          </div>
+     </header>
+
+
+      <section class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="{% url 'main_app:home' %}" class="navbar-brand"><i class="fa fa-h-square"></i>ealth Center</a>
+               </div>
+
+               <!-- MENU LINKS -->
+              <div class="collapse navbar-collapse" style="display: flex;">
+                <ul class="nav navbar-nav mx-auto">
+                    <li><a href="{% url 'main_app:home' %}" class="nav-link smoothScroll">Home</a></li>
+                    <li><a href="{% url 'main_app:clinics' %}" class="nav-link smoothScroll">Clinics</a></li>
+                    {% if request.user.is_staff %}
+                        <li><a href="{% url 'main_app:manager' %}" class="nav-link smoothScroll">Manager</a></li>
+                        <li><a href="{% url 'main_app:manager_add' %}" class="nav-link px-2">Add Clinics</a></li>
+                        <li><a href="{% url 'main_app:manager_appointments' %}" class="nav-link px-2">Appointmints</a></li>
+                        <li><a href="{% url 'main_app:appointments_add' %}" class="nav-link px-2">Add Appointmint</a></li>
+                    {% endif %}
+                </ul>
+            
+                {% if request.user.is_authenticated %}
+                    <div class="navbar-right mx-auto">
+                        <h5 class="mb-3">Welcome, {{ request.user.username }}</h5>
+                        <a href="{% url 'users_app:signout' %}" class="btn btn-danger">Sign Out</a>
+                    </div>
+                {% else %}
+                    <div class="navbar-right ml-auto">
+                        <a href="{% url 'users_app:signup' %}" class="btn btn-warning">Sign Up</a>
+                        <a href="{% url 'users_app:signin' %}" class="btn btn-primary">Sign in</a>
+                    </div>
+                {% endif %}
+              </div>
+            
+
+          </div>
+      </section>
+      
+     <!-- HOME -->
+     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+      <div class="container">
+          <div class="row">
+              <div class="owl-carousel owl-theme">
+                  <div class="item item-first">
+                      <div class="caption">
+                          <div class="col-md-offset-1 col-md-10">
+                              <!-- Hero Image -->
+                              <img src="{% static 'images/about-bg.jpg' %}" alt="Hero Image" class="img-fluid">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+    
+
+     <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+           <div class="row">
+
+                <div class="col-md-6 col-sm-6">
+                     <div class="about-info">
+                          <h2 class="wow fadeInUp" data-wow-delay="0.6s">Welcome to Your <i class="fa fa-h-square"></i>ealth Center</h2>
+                          <div class="wow fadeInUp" data-wow-delay="0.8s">
+                               <p>Healthcare.</p>
+                               <p>Below You'll find our clinics.</p>
+                          </div>                          
+                     </div>
+                </div>
+              
+           </div>
+      </div>
+  </section>
+
+  <section id="team" data-stellar-background-ratio="1">
+    <div class="container">
+        <div class="row">
+              <div class="col-md-6 col-sm-6">
+                   <div class="about-info">
+                        <h2 class="wow fadeInUp" data-wow-delay="0.1s">Our Clinics</h2>
+                   </div>
+              </div>
+
+              <div class="clearfix"></div>
+      </div>
+  </section>
+  {% block content %}
+                       
+  {% endblock %}
+
+
+  <footer data-stellar-background-ratio="5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6">
+                         <div class="footer-thumb"> 
+                              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
+                              <div class="contact-info">
+                                   <p><i class="fa fa-phone"></i>  011-066-5456</p>
+                                   <p><i class="fa fa-envelope-o"></i> <a href="#">info@company.com</a></p>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="col-md-6"> 
+                         <div class="footer-thumb">
+                              <div class="opening-hours">
+                                   <h4 class="wow fadeInUp" data-wow-delay="0.4s">Opening Hours</h4>
+                                   <p>Sunday - Thursday <span>06:00 AM - 10:00 PM</span></p>
+                                   <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
+                                   <p>Friday <span>Closed</span></p>
+                              </div> 
+
+                          </div>
+                    </div>
+               </div>
+          </div>
+     </footer>
+
+     <!-- SCRIPTS -->
+     <script src="{% static 'js/jquery.js' %}"></script>
+     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/jquery.sticky.js' %}"></script>
+     <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+     <script src="{% static 'js/wow.min.js' %}"></script>
+     <script src="{% static 'js/smoothscroll.js' %}"></script>
+     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'js/custom.js' %]"></script>
+
+    

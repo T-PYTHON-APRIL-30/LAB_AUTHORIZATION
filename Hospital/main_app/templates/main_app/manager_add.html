@@ -1,0 +1,43 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex align-items-center">
+                <div class="container mb-5">
+                    <form action="{% url 'main_app:manager_add' %}" method="POST" class="justify-content-center align-items-center" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                        <h1 class="mb-3">Fill in information</h1>
+
+                        <div class="mb-3">
+                            <span class="input-group-text" id="basic-addon1">Name</span>
+                            <input type="text" name="name" class="form-control" placeholder="Name" aria-label="Username">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="input-group-text">Department</label>
+                            <select class="form-select" name="department">
+                                <option selected>Choose</option>
+                                {% for clinic in clinic %}
+                                    <option value="{{clinic.department}}">{{clinic.department}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="input-group-text">Image</label>
+                            <input type="file" name="feature_image" class="form-control">
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text">Description</span>
+                            <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+                        </div>
+                        <br>
+
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mb-3">
+    <h2>Clinics</h2>
+    <div class="mb-5">
+        <a href="{% url 'main_app:clinics' %}" class="btn btn-primary">Clinics</a>
+        <a href="{% url 'main_app:manager_add' %}" class="btn btn-primary">Add Clinic</a>
+    </div>
+    <h2>Appointments</h2>
+    <div class="container mb-3">
+        <a href="{% url 'main_app:manager_appointments' %}" class="btn btn-primary">Appointments</a>
+        <a href="{% url 'main_app:appointments_add' %}" class="btn btn-primary">Add Appointment</a>
+    </div>
+</div>
+{% endblock %}
