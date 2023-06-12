@@ -1,0 +1,28 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %} View Appointment{% endblock%}
+
+
+{% block content%}
+<div class="container d-flex flex-column gap-3">
+    <h2>Appointments</h2>
+    {% for appointment in appointments %}
+
+    <div class="d-flex flex-column p-4 border border-1 rounded-5 gap-1">
+        <h6>{{appointment.user.username}}</h6>
+        <h6>Patient Age: {{appointment.patient_age}}</h6>
+        <p>{{appointment.appointment_datetime}}</p>
+        <p>{{appointment.case_description}}</p>
+    </div>
+
+    <div class="d-flex gap-2">
+        {% if request.user.is_staff %}
+        <a href="{% url 'main_app:delete_appointment' clinic.id %}" class="btn btn-danger">Delete Appointment</a>
+        {% endif %}
+
+    </div>
+    
+    {% endfor %}
+
+</div>
+{% endblock %}

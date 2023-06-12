@@ -1,0 +1,65 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %} Add A Clinic {% endblock%}
+
+
+{% block content%}
+<h1>Add Clinic</h1>
+<div class="container">
+
+    <form action="{% url 'main_app:add_update_clinic' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in name"
+                name="name">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="fill in title"
+                name="description"></textarea>
+        </div>
+
+
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Choose Image</label>
+            <input type="file" name="feature_image" class="form-control" />
+        </div>
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Department</label>
+            <select class="form-select" name="department" id="inputGroupSelect01">
+                <option selected>Choose</option>
+                
+                <option value="Heart Center">Heart Center</option>
+                <option value="Neuroscience Center">Neuroscience Center</option>
+                <option value="Obesity Center">Obesity Center</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+
+               
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Established At</label>
+            <input type="date" name="established_at"/>
+        </div>
+
+        <div class="mb-3">
+            <input type="submit" value="Create Clinic" class="btn btn-primary"/>
+        </div>
+
+
+    </form>
+
+</div>
+{% endblock %}

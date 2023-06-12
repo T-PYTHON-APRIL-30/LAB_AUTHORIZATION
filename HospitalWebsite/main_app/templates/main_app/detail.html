@@ -1,0 +1,67 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}{{clinic.name}}{% endblock%}
+
+{% block content %}
+
+<div class="container d-flex flex-column gap-2">
+    <h1>{{clinic.name}}</h1>
+    
+    <img class="rounded-5" src="{{ clinic.feature_image.url }}" />
+    <div class="d-flex justify-content-between align-items-center gap-2">
+        <div class="d-flex gap-2">
+
+            {% if request.user.is_staff %}
+            <a href="{% url 'main_app:update_clinic' clinic.id %}" class="btn btn-warning">Update Clinic</a>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    <p>{{clinic.description}}</p>
+</div>    
+
+
+
+
+
+<div class="container mt-3">
+    <h3>Book Appointment</h3>
+
+    {% if request.user.is_authenticated %}
+    <form action="{% url 'main_app:book_appointment' clinic.id %}" method="POST">
+        {% csrf_token %}
+
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Patient Age</label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Type Your Age" name="patient_age">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Case Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="descripe your problem" name="case_description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Appointment Time</label>
+            <input type="datetime-local" name="appointment_datetime" />
+        </div>
+
+        <div class="mb-3">
+            <input type="submit" value="Book Appointment" class="btn btn-primary" />
+            <a href="{% url 'main_app:view_appointment' clinic.id %}" class="btn btn-warning">View Appointment</a>
+
+        </div>
+
+    </form>
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+       Please <a href="{% url 'accounts:sign_in' %}">sign in</a> or <a href="{% url 'accounts:sign_up' %}">sign up</a> to Book an Appointment
+      </div>
+    {% endif %}
+
+</div>
+{% endblock %}
