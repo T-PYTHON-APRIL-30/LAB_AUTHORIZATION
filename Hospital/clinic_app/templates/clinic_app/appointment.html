@@ -7,26 +7,30 @@
 <table>
     <thead>
         <tr>
-            <th>Date/Time</th>
-            <th>Case Description</th>
-            <th>Patient Age</th>
-            <th>Attended</th>
+            <th style="text-align: center">Date/Time</th>
+            <th style="text-align: center">Case Description</th>
+            <th style="text-align: center">Patient Age</th>
+            <th style="text-align: center">Attended</th>
         </tr>
     </thead>
     <tbody>
         {% for appointment in appointments %}
         <tr>
-            <td>{{ appointment.appointment_datetime }}</td>
-            <td>{{ appointment.case_description }}</td>
-            <td>{{ appointment.patient_age }}</td>
-            <td>{% if appointment.is_attended %}Yes{% else %}No{% endif %}</td>
+            <td style="text-align: center">{{ appointment.appointment_datetime }}</td>
+            <td style="text-align: center">{{ appointment.case_description }}</td>
+            <td style="text-align: center">{{ appointment.patient_age }}</td>
+            <td style="text-align: center">{% if appointment.is_attended %}Yes{% else %}No{% endif %}</td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="4">No appointments scheduled.</td>
+            <td style="text-align: center" colspan="4">No appointments scheduled.</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+<br>
+<div style="text-align: center">
+    <a href="{% url 'clinic_app:create_appointment' %}">Create appointment</a>
+</div>
 
 {% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'clinic_app/base.html' %}
+{% block title %} Appointment {% endblock%}
+
+{% block content %}
+<h1 style="text-align: center">Create Appointment</h1>
+
+<br>
+<h1>{{ clinic.name }}</h1>
+<img src="{{ clinic.image.url }}">
+<h1>{{ request.user.first_name }}</h1>
+<h1>{{ clinic.name }}</h1>
+<h1>{{ clinic.department }}</h1>
+<br>
+
+<form action="{% url 'clinic_app:create_appointment' clinic.id %}" method="POST">
+    {% csrf_token %}
+
+    <label>appointment date and time</label>
+    <input type="datetime-local" name="appointment_datetime" autocomplete="established_at">
+
+    <label>your age</label>
+    <input type="number" name="patient_age">
+
+    <label> case description </label>
+    <textarea name="case_description"></textarea>
+
+    <input type="submit" value="submit" />
+</form>
+
+{% endblock content %}

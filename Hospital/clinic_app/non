@@ -1,0 +1,17 @@
+def create_appointment(request:HttpRequest, clinic_id, user_id):
+    clinic = Clinic.objects.get(id=clinic_id)
+    user = User.objects.get(id=user_id)
+    appointment = Appointment.objects.all()
+    if request.method == "POST":
+        appointment.case_description = request.POST['case_description']
+        appointment.patient_age = request.POST['patient_age']
+        appointment.description = request.POST["description"]
+        appointment.appointment_datetime = request.POST["appointment_datetime"]
+        appointment.is_attended = request.POST["is_attended"]
+        appointment.save()
+        return redirect('clinic_app:appointment', clinic_id=clinic.id)
+    else:
+        return redirect("clinic_app:create_appointment", clinic_id=clinic.id, user_id=user.id)
+    
+
+path('create/appointment/<clinic_id>/<user_id>/', views.create_appointment, name='create_appointment'),

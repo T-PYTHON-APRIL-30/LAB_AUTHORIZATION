@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Clinic, Appointment
 from django.http import HttpRequest
-
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -54,4 +54,18 @@ def contact(request):
 
 def appointment_page(request:HttpRequest, clinic_id):
     clinic = Clinic.objects.get(id=clinic_id)
-    return render(request, 'clinic_app/appointment.html', {"clinic":clinic})
+    appointments = Appointment.objects.filter(clinic=clinic).order_by('appointment_datetime')
+    return render(request, 'clinic_app/appointment.html', {'clinic': clinic, 'appointments': appointments})
+
+def create_appointment(request:HttpRequest):
+    if request.method == 'POST':
+        Acase_description = request.POST['case_description']
+        Apatient_age = request.POST['patient_age']
+        Adescription = request.POST["description"]
+        Aappointment_datetime = request.POST["appointment_datetime"]
+        Ais_attended = request.POST["is_attended"]
+        new_appointment = Appointment(case_description=Acase_description, patient_age=Apatient_age, description=Adescription, appointment_datetime=Aappointment_datetime, is_attended=Ais_attended)
+        new_appointment.save()
+        return redirect('clinic_app:appointment')
+    else:
+        return redirect("clinic_app:create_appointment")
