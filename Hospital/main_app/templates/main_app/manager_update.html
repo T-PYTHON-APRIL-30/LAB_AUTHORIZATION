@@ -1,0 +1,43 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex align-items-center">
+                <div class="container col-xxl-8 px-4 py-5 mb-5">
+                    <form action="{% url 'main_app:manager_update' clinic.id %}" method="POST" class="align-items-center justify-content-center" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h1 class="mb-3">Update {{clinic.name}}</h1>
+
+                        <div class="mb-3">
+                            <span class="input-group-text">Name</span>
+                            <input type="text" name="name" class="form-control" value="{{clinic.name}}" aria-label="Username">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="input-group-text">Department</label>
+                            <select class="form-select" name="department">
+                                <option selected>{{clinic.department}}</option>
+                                {% for clinics in clinics %}
+                                    <option value="{{clinics.department}}">{{clinics.department}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <img src="{{clinic.feature_image.url}}" class="mb-3"/>
+                        <div class="mb-3">
+                            <label class="input-group-text">Image</label>
+                            <input type="file" name="feature_image" class="form-control">
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text">Description</span>
+                            <textarea class="form-control" name="description" aria-label="With textarea">{{clinic.description}}</textarea>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit" fdprocessedid="1isj6h">Update</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+{% endblock %}

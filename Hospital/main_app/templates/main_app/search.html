@@ -1,0 +1,42 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container col-xxl-8 px-4 py-5">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <form action="{% url 'main_app:search' %}" method="GET" class="d-flex" role="search">
+                    <input name="search" class="form-control me-2" type="search" placeholder="Clinics" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+          </nav>
+    </div>
+
+    <div class="container col-xxl-8 px-4 py-5 mb-5">
+        <h3>Search results for <span class="text-success">{{request.GET.search}}</span></h3>
+        <div class="container col-xxl-8 px-4 py-5 mb-5">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-deck">
+                {% for clinic in clinic %}
+                <div class="card">
+                  <img src="{{ clinic.feature_image.url }}" class="card-img-top" alt="Clinic Image" style="object-fit: cover; height: 200px;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ clinic.name }}</h5>
+                    <p class="card-text">{{ clinic.description }}</p>
+                  </div>
+                  <div class="card-footer">
+                    <a href="{% url 'main_app:clinics_detail' clinic.id %}" class="btn btn-primary">View More</a>
+                    {% if request.user.is_staff %}
+                        <a href="{% url 'main_app:manager_update' clinic.id %} " class="btn btn-warning">Update</a>
+                    {% endif %}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+{% endblock %}
