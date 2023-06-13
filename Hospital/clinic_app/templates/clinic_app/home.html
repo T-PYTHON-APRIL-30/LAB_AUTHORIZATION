@@ -15,7 +15,8 @@
     {% for clinic in clinics %}
     <br>
     <h4 style="color: orangered">{{ clinic.name }}</h4>
-    <img>{{ clinic.feature_image }}</img>
+    <img src="{{ clinic.feature_image.url }}" />
+    <br>
     <label>Description</label><br>
     <p>{{ clinic.description }}</p>
     <label>Department</label><br>

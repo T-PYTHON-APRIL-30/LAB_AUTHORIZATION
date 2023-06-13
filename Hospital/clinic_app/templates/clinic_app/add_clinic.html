@@ -5,7 +5,7 @@
 
 <h1 style="text-align: center">Add Clinic</h1>
 
-<form method="POST" style="text-align: center">
+<form method="POST" style="text-align: center" enctype="multipart/form-data">
     {% csrf_token %}
     <div>
         <label>enter clinic name</label><br>
@@ -19,7 +19,7 @@
     <br>
     <div>
         <label>enter clinic image</label><br>
-        <input type="file" name="feature_image">
+        <input type="file" name="feature_image" />
     </div>
     <br>
     <label>enter clinic department</label><br>

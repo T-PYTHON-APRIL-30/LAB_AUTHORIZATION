@@ -10,15 +10,18 @@ def home(request):
     return render(request, 'clinic_app/home.html', {'clinics':clinics})
 
 def add_clinic(request:HttpRequest):
+    #check
     if not request.user.is_staff:
         return redirect("clinic_app:not_found")
+    # add
     if request.method == 'POST':
         cname = request.POST['name']
-        cfeature_image = request.POST['feature_image']
         cdescription = request.POST["description"]
         cdepartment = request.POST["department"]
         cestablished_at = request.POST["established_at"]
-        new_clinic = Clinic(name=cname, feature_image=cfeature_image, description=cdescription, department=cdepartment, established_at=cestablished_at)
+        new_clinic = Clinic(name=cname, description=cdescription, department=cdepartment, established_at=cestablished_at)
+        if "feature_image" in request.FILES:
+            new_clinic.feature_image = request.FILES['feature_image']
         new_clinic.save()
         return redirect('clinic_app:home') 
     else: 
@@ -39,6 +42,10 @@ def search(request:HttpRequest):
     return render(request, "clinic_app/search.html", {"clinics":clinic})
 
 def update_clinic(request:HttpRequest, clinic_id):
+    #check
+    if not request.user.is_staff:
+        return redirect("clinic_app:not_found")
+    #update
     clinic = Clinic.objects.get(id=clinic_id)
     if request.method == "POST":
         clinic.name = request.POST['name']
@@ -72,3 +79,16 @@ def create_appointment(request:HttpRequest, clinic_id):
 
 def not_found(request):
     return render(request, 'clinic_app/not_found.html')
+
+def update_appointment(request:HttpRequest, appointment_id):
+    appointment = Appointment.objects.get(id=appointment_id)
+    iso_date = appointment.appointment_datetime.isoformat()
+    #updating the clinic
+    if request.method == "POST":
+        appointment.case_description = request.POST["case_description"]
+        appointment.patient_age = request.POST["patient_age"]
+        appointment.appointment_datetime = request.POST["appointment_datetime"]
+        appointment.is_attended = request.POST["is_attended"]
+        appointment.save()
+        return redirect("hospital_app:appointment_details", appointment_id=appointment.id)
+    return render(request, 'hospital_app/update_appointment.html', {"appointment" : appointment,"iso_date" : iso_date})
