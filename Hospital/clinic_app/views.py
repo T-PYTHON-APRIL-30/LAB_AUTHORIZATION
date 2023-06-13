@@ -67,3 +67,4 @@ def create_appointment(request:HttpRequest, clinic_id):
         new_appointment.save()
         return redirect('clinic_app:appointment', clinic_id=clinic.id)
     return render(request, 'clinic_app/create_appointment.html', {"clinic":clinic})
+

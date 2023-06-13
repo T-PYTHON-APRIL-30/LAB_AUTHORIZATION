@@ -17,7 +17,9 @@
     </div>
 
     <div>
+        {% if request.user.is_staff %}
         <a href="{% url 'clinic_app:update_clinic' clinic.id %}">Update clinic</a><br>
+        {% endif %}
         <a href="{% url 'clinic_app:appointment' clinic.id %}">Browse appointments</a><br>
     </div>
 </div>

@@ -3,6 +3,7 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
 <h1>{{ clinic.name }}, appointment schedule</h1>
 <table>
     <thead>
@@ -28,9 +29,13 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<br><div style="text-align: center"><a href="{% url 'accounts:sign_in' %}">sign in</a> or <a href="{% url 'accounts:signup' %}">sign up</a> to book appointment</div>
+{% endif %}
 
 <br>
 
+{% if request.user.is_authenticated %}
 <h1 style="text-align: center">Create Appointment</h1>
 
 <form action="{% url 'clinic_app:create_appointment' clinic.id %}" method="POST" style="text-align: center">
@@ -52,6 +57,8 @@
     <br>
     <button type="submit">Add appointment</button>
 </form>
+{% endif %}
+
 <br>
 
 {% endblock %}
