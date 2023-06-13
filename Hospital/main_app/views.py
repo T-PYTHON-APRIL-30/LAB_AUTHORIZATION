@@ -82,8 +82,9 @@ def make_appointment(request:HttpRequest, clinic_id):
         clinic_object = Clinic.objects.get(id=clinic_id)
         new_appointment = Appointment(clinic=clinic_object, user=request.user, case_description=request.POST["case_description"], patient_age=int(request.POST["patient_age"]),appointment_datetime=request.POST["appointment_datetime"]) 
         new_appointment.save()
+        return redirect("main_app:clinic_detail",clinic_id=clinic_object.id)
     
-    return redirect("main_app:clinic_detail", {"clinic_object":clinic_object})
+    return render(request,"main_app/clinic_detail.html")
 
 
 
