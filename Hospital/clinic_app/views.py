@@ -10,6 +10,8 @@ def home(request):
     return render(request, 'clinic_app/home.html', {'clinics':clinics})
 
 def add_clinic(request:HttpRequest):
+    if not request.user.is_staff:
+        return redirect("clinic_app:not_found")
     if request.method == 'POST':
         cname = request.POST['name']
         cfeature_image = request.POST['feature_image']
@@ -68,3 +70,5 @@ def create_appointment(request:HttpRequest, clinic_id):
         return redirect('clinic_app:appointment', clinic_id=clinic.id)
     return render(request, 'clinic_app/create_appointment.html', {"clinic":clinic})
 
+def not_found(request):
+    return render(request, 'clinic_app/not_found.html')

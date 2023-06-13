@@ -9,7 +9,6 @@ from django.http import HttpRequest, HttpResponse
 def signin(request:HttpRequest):
     msg = None
     if request.method == "POST":
-
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)

@@ -12,4 +12,6 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path("appointment/<clinic_id>/", views.appointment_page, name="appointment"),
     path('create/appointment/<clinic_id>/', views.create_appointment, name='create_appointment'),
+    path('not/found/', views.not_found, name="not_found"),
+
 ]

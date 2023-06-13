@@ -30,7 +30,9 @@
     </tbody>
 </table>
 {% else %}
-<br><div style="text-align: center"><a href="{% url 'accounts:sign_in' %}">sign in</a> or <a href="{% url 'accounts:signup' %}">sign up</a> to book appointment</div>
+<br>
+<div style="text-align: center"><a href="{% url 'accounts:sign_in' %}">sign in</a> or <a
+        href="{% url 'accounts:signup' %}">sign up</a> to book and browse appointments</div>
 {% endif %}
 
 <br>
