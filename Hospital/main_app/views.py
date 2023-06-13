@@ -80,20 +80,20 @@ def make_appointment(request:HttpRequest, clinic_id):
 
     if request.method == "POST":
         clinic_object = Clinic.objects.get(id=clinic_id)
-        new_appointment = Appointment(clinic=clinic_object, user=request.user, case_description=request.POST["case_description"], patient_age=request.POST["patient_age"],appointment_datetime=request.POST["appointment_datetime"])
+        new_appointment = Appointment(clinic=clinic_object, user=request.user, case_description=request.POST["case_description"], patient_age=int(request.POST["patient_age"]),appointment_datetime=request.POST["appointment_datetime"]) 
         new_appointment.save()
     
-    return redirect("main_app:clinic_detail", clinic_id=clinic_id)
+    return redirect("main_app:clinic_detail", {"clinic_object":clinic_object})
 
 
 
 def appointment_view(request:HttpRequest):
 
     if not (request.user.is_staff and  request.user.has_perm("main_app.add_appointment")):
-        appointment_user=Appointment.objects.filter(user=request.user)
+        appointments=Appointment.objects.filter(user=request.user)
     else:
-        appointment_user=Appointment.objects.all()
-    return render(request,"main_app/appointment_view.html",{"appointment_user":appointment_user })
+        appointments=Appointment.objects.all()
+    return render(request,"main_app/appointment_view.html",{"appointments":appointments })
 
 
 def search_page(request:HttpRequest):
