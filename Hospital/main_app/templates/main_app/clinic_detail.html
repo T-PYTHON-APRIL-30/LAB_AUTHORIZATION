@@ -1,0 +1,60 @@
+{% extends 'main_app/index.html' %}
+
+{% block title %} Clinic Details {% endblock%}
+
+
+{% block content %}
+
+<div class="container d-flex flex-column gap-2 align-items-center ">
+  <h1>{{clinic.name}}</h1>
+  <img class="rounded-5" src="{{clinic.feature_image.url}}" style="width:15cm ;height:12cm; border-radius: 3px;"/>
+  <div class="d-flex justify-content-between align-items-center gap-2">
+    <div class="d-flex gap-2">
+      {% if perms.main_app.change_clinic and perms.main_app.delete_clinic%}
+      <a href="{% url 'main_app:update_clinic' clinic.id %}" class="btn btn-warning">update game</a>
+      <a href="{% url 'main_app:delete_clinic' clinic.id %}" class="btn btn-danger">Delete game</a>
+      {% endif %}
+    </div>
+  </div>
+  <p>{{clinic.description}}</p>
+</div>
+
+<!-- Make Appointment -->
+{% if request.user.is_authenticated %}
+<div class="page-section">
+  <div class="container">
+    <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
+    
+    <form class="main-form" method="post">
+      {% csrf_token %}
+      <div class="row mt-5 ">
+        <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+          <input type="text" class="form-control" placeholder="Your age.." name="patient_age">
+        </div>
+        <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+          <input type="date" class="form-control" name="appointment_datetime" placeholder="Choose Date:">
+        </div>
+        <!-- <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+          <input type="text" class="form-control" placeholder="yout..">
+        </div> -->
+        <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+          <textarea name="case_description" id="message" class="form-control" rows="6" placeholder="Enter your case description.."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Booking</button>
+    </form>
+  </div>
+  {% else %}
+  <div class="alert alert-dark" role="alert">
+    Please <a href="{% url 'accounts:sign_up' %}">register</a> or <a href="{% url 'accounts:sign_in' %}">log in</a> to booking an appointment!
+  </div>
+  {% endif %}
+  
+  {% endblock %}
+</div>
+
+  
+
+
+
+

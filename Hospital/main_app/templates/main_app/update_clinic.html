@@ -1,0 +1,49 @@
+{% extends 'main_app/index.html' %}
+
+{% block title %} Not Found {% endblock%}
+
+
+{% block content %}
+<h1>Update clinic: {{clinic.name}}</h1>
+
+<div class="container">
+    <form action="{% url 'main_app:update_clinic' clinic.id %}" method="POST" enctype="multipart/form-data"> 
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="clinic name" name="name" value={{clinic.name}}>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="clinic description" name="description">{{clinic.description}}</textarea>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Department</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="department">
+                <option selected>Choose the department...</option>
+                <option value="HC"{% if clinic.department == HC %} selected {% endif %}>Heart Center</option>
+                <option value="EUC"{% if clinic.department == EUC %} selected {% endif %}>euroscience Center</option>
+                <option value="OBC"{% if clinic.department == OBC %} selected {% endif %}>Obesity Center</option>
+                <option value="EYEC"{% if clinic.department == EYEC %} selected {% endif %}>Eye Center</option>
+                <option value="ORC"{% if clinic.department == ORC %} selected {% endif %}>Orthopedic Center</option>
+                <option value="PEC"{% if clinic.department == PEC %} selected {% endif %}>Pediatric Center</option>
+            </select>
+            </select>
+        </div>
+        
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Choose Image</label>
+          <img src="{{clinic.images.url}}" class="w-25 rounded-5"/>
+          <input type="file" name="feature_image" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <input type="submit" value="Add Post" class="btn btn-primary" />
+        </div>
+    </form>
+    {% endblock %}
+</div>

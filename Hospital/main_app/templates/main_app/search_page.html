@@ -1,0 +1,34 @@
+{% extends 'main_app/index.html' %}
+
+{% block title %} search results{% endblock%}
+
+
+{% block content %}
+
+<h3>Search results for <span class="text-success">{{request.GET.search}}</span></h3>
+<div class="row mt-5">
+    {% for clinic in clinics %}
+    <div class="col-lg-4 py-2 wow zoomIn">
+      <div class="card-blog">
+        <div class="header">
+          <div class="post-category">
+          </div> 
+          <a href="{% url 'main_app:clinic_detail' clinic.id %}" class="post-thumb">
+            <img src={{clinic.feature_image.url}} alt="">
+          </a>
+        </div>
+        <div class="body">
+          <h6 class="post-title">{{clinic.name}}</h6>
+          <div class="site-info">
+            <p class="card-text">{{clinic.description| slice:":40" }}</p>
+          </div>
+          <a href="{% url 'main_app:clinic_detail' clinic.id %}" class="btn btn-primary mt-3">View More</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+</div> 
+

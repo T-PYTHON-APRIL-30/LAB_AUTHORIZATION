@@ -1,0 +1,27 @@
+{% extends 'main_app/index.html' %}
+
+{% block title %} Appointments View {% endblock%}
+
+
+{% block content %}
+
+<div  class="flex flex-col items-center mb-15"> 
+    <div  class="flex flex-col items-center p-5  border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 ">
+            {% for appointment in appointments  %}
+            <div class="mt-10 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl  dark:border-gray-700 dark:bg-gray-800 ">
+                <div class="flex flex-col justify-between p-4 leading-normal " >
+                    <h5 class="mb-2 text-2xl p-8 font-bold tracking-tight text-gray-900 dark:text-white">case description : {{appointment.case_description}}</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">time : {{appointment.appointment_datetime}}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">age : {{appointment.patient_age}}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Clinic : {{appointment.clinic.name}}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">is attended : {% if appointment.is_attended  %} yes {% else %} not yet {% endif %} </p>
+                    </div>
+            </div>
+            {% endfor %}
+      </div>
+      </div>
+    
+    </div>
+    
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'main_app/index.html' %}
+
+{% block title %} Add New Clinic {% endblock%}
+
+
+{% block content %}
+
+<div class="container">
+        <form action="" method="POST" enctype="multipart/form-data"> 
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="clinic name" name="name">
+            </div>
+    
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Description</label>
+                <textarea class="form-control" id="exampleFormControlInput1" placeholder="clinic description" name="description"></textarea>
+            </div>
+    
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Department</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" name="department">
+                    <option selected>Choose the department...</option>
+                    <option value="HC">Heart Center</option>
+                    <option value="EUC">euroscience Center</option>
+                    <option value="OBC">Obesity Center</option>
+                    <option value="EYEC">Eye Center</option>
+                    <option value="ORC">Orthopedic Center</option>
+                    <option value="PEC">Pediatric Center</option>
+                </select>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Choose Image</label>
+              <input type="file" name="feature_image" class="form-control" />
+            </div>
+    
+            <div class="mb-3">
+                <input type="submit" value="Add Post" class="btn btn-primary" />
+            </div>
+        </form>
+        {% endblock %}
+    </div>
+    
