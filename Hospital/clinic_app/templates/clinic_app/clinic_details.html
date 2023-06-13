@@ -7,10 +7,13 @@
     <h1 style="text-align: center">Clinic Details</h1>
 
     <div style="text-align: center">
-        <h4>{{ clinic.name }}</h4>
-        <p>Description: {{ clinic.description }}</p>
-        <p>Department: {{ clinic.department }}</p>
-        <p>Established at: {{ clinic.established_at }}</p>
+        <h4 style="color: orangered">{{ clinic.name }}</h4>
+        <label>Description</label><br>
+        <p>{{ clinic.description }}</p>
+        <label>Department</label><br>
+        <p>{{ clinic.department }}</p>
+        <label>Established at</label><br>
+        <p>{{ clinic.established_at }}</p>
     </div>
 
     <div>

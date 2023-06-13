@@ -13,13 +13,16 @@
     {% for clinic in clinics %}
     <br>
     <h4 style="color: orangered">{{ clinic.name }}</h4>
-    <img >{{ clinic.feature_image }}</img>
-    <p>Description: {{ clinic.description }}</p>
-    <p>Department: {{ clinic.department }}</p>
-    <p>Established at: {{ clinic.established_at }}</p>
-    <div> 
+    <img>{{ clinic.feature_image }}</img>
+    <label>Description</label><br>
+    <p>{{ clinic.description }}</p>
+    <label>Department</label><br>
+    <p>{{ clinic.department }}</p>
+    <label>Established at:</label><br>
+    <p>{{ clinic.established_at }}</p>
+    <div>
         <a href="{% url 'clinic_app:clinic_details' clinic.id %}">details</a>
-      </div>
+    </div>
     {% endfor %}
 </div>
 

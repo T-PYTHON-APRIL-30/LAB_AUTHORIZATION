@@ -8,17 +8,21 @@
 <form method="POST" style="text-align: center">
     {% csrf_token %}
     <div>
+        <label>enter clinic name</label><br>
         <input placeholder="clinic name" name="name" type="text">
     </div>
     <br>
     <div>
+        <label>enter clinic description</label><br>
         <textarea placeholder="description" name="description"></textarea>
     </div>
     <br>
     <div>
+        <label>enter clinic image</label><br>
         <input type="file" name="feature_image">
     </div>
     <br>
+    <label>enter clinic department</label><br>
     <div>
         <select name="department">
             <option value="Heart Center">Heart Center</option>
@@ -31,6 +35,7 @@
     </div>
     <br>
     <div>
+        <label>enter clinic established date</label><br>
         <input type="date" name="established_at">
     </div>
     <br>

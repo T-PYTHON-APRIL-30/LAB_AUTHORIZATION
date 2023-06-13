@@ -28,9 +28,30 @@
         {% endfor %}
     </tbody>
 </table>
+
 <br>
-<div style="text-align: center">
-    <a href="{% url 'clinic_app:create_appointment' clinic.id%}">Create appointment</a>
-</div>
+
+<h1 style="text-align: center">Create Appointment</h1>
+
+<form action="{% url 'clinic_app:create_appointment' clinic.id %}" method="POST" style="text-align: center">
+    {% csrf_token %}
+    <div>
+        <label>enter your date and time</label><br>
+        <input placeholder="date" name="appointment_datetime" type="datetime-local">
+    </div>
+    <br>
+    <div>
+        <label>enter your age</label><br>
+        <input placeholder="age" name="patient_age" type="number">
+    </div>
+    <br>
+    <div>
+        <label>enter your case description</label><br>
+        <textarea placeholder="description" name="case_description"></textarea>
+    </div>
+    <br>
+    <button type="submit">Add appointment</button>
+</form>
+<br>
 
 {% endblock %}
