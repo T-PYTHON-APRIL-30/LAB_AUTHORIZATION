@@ -22,6 +22,14 @@
             <td style="text-align: center">{{ appointment.patient_age }}</td>
             <td style="text-align: center">{% if appointment.is_attended %}Yes{% else %}No{% endif %}</td>
         </tr>
+        {% if request.user.is_staff %}
+        <td style="text-align: center">
+            <label>update:</label>
+            <a href="{%url 'clinic_app:update_appointment' appointment.id %}">update</a>
+            <label>delete:</label>
+            <a href="{%url 'clinic_app:update_appointment' appointment.id %}">delete</a>
+        </td>
+        {% endif %}
         {% empty %}
         <tr>
             <td style="text-align: center" colspan="4">No appointments scheduled.</td>

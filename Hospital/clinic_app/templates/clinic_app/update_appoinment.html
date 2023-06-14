@@ -1,0 +1,46 @@
+{% extends 'clinic_app/base.html' %}
+{% block title %} Update appointment {% endblock%}
+
+{% block content %}
+<h1 style="text-align: center">Update Appointment</h1>
+
+<div style="text-align: center">
+    <label>patient name</label><br>
+    <p>{{ appointment.user.username }}</p>
+    <label>clinic name</label><br>
+    <p> {{ appointment.clinic.name }}</p>
+</div>
+
+<hr>
+
+{% if request.user.is_staff %}
+<form  method="POST" style="text-align: center">
+    {% csrf_token %}
+    <div>
+        <label>enter your date and time</label><br>
+        <input placeholder={{appointment.appointment_datetime}} name="appointment_datetime" type="datetime-local">
+    </div>
+    <br>
+    <div>
+        <label>enter your age</label><br>
+        <input placeholder={{appointment.patient_age}} name="patient_age" type="number">
+    </div>
+    <br>
+    <div>
+        <label>enter your case description</label><br>
+        <textarea placeholder="description" name="case_description">{{ appointment.case_description }}</textarea>
+    </div>
+    <br>
+    <div>
+        <label>attendedance</label><br>
+        <select name="is_attended">
+            <option value="True" {% if appointment.is_attended %} selected {% endif %}>Yes</option>
+            <option value="False" {% if not appointment.is_attended %} selected {% endif %}>No</option>
+        </select>
+    </div>
+    <br>
+    <button type="submit">Save updates</button>
+</form>
+{% endif %}
+
+{% endblock %}
