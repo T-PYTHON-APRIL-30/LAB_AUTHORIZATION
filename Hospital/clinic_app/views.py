@@ -102,4 +102,4 @@ def delete_appointment(request:HttpRequest, appointment_id):
     #delete
     appointment = Appointment.objects.get(id=appointment_id)
     appointment.delete()
-    return redirect("clinic_app:home")
+    return redirect("clinic_app:appointment", clinic_id=appointment.clinic.id)
