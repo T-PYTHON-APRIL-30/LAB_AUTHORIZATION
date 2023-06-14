@@ -92,3 +92,27 @@ def update_appointment(request:HttpRequest, appointment_id):
         appointment.save()
         return redirect("hospital_app:appointment_details", appointment_id=appointment.id)
     return render(request, 'hospital_app/update_appointment.html', {"appointment" : appointment,"iso_date" : iso_date})
+
+def update_appointment(request:HttpRequest, appointment_id):
+    #check
+    if not request.user.is_staff:
+        return redirect("clinic_app:not_found")
+    #update
+    appointment = Appointment.objects.get(id=appointment_id)
+    if request.method == "POST":
+        appointment.case_description = request.POST["case_description"]
+        appointment.patient_age = request.POST["patient_age"]
+        appointment.appointment_datetime = request.POST["appointment_datetime"]
+        appointment.is_attended = request.POST["is_attended"]
+        appointment.save()
+        return redirect("clinci_app:appointment", appointment_id=appointment.id)
+    return render(request, 'clinci_app/update_appointment.html', {"appointment":appointment})
+
+def delete_appointment(request:HttpRequest, appointment_id):
+    #check
+    if not request.user.is_staff:
+        return redirect("clinic_app:not_found")
+    #delete
+    appointment = Appointment.objects.get(id=appointment_id)
+    appointment.delete()
+    return redirect("clinic_app:home")
