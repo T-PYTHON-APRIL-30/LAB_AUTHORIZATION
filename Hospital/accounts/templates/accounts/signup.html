@@ -1,0 +1,42 @@
+{% extends 'clinic_app/base.html'%}
+{% block title %} Sign-in {% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center">Sign up</h1>
+{% if msg %}
+<p>{{msg}}</p>
+{% endif %}
+
+<form style="text-align: center" action="{% url 'accounts:signup' %}" method="POST">
+    {% csrf_token %}
+
+    <div>
+        <input type="text" placeholder="first name" name="first_name">
+    </div>
+    <br>
+    <div>
+        <input type="text" placeholder="last name" name="last_name">
+    </div>
+    <br>
+    <div>
+        <input type="email" placeholder="email" name="email">
+    </div>
+    <br>
+    <div>
+        <input type="text" placeholder="username" name="username">
+    </div>
+    <br>
+    <div>
+        <input type="password" placeholder="password" name="password">
+    </div>
+    <br>
+    <button type="submit">Sign up</button>
+</form>
+
+<br>
+<div style="text-align: center">
+    <a href="{% url 'accounts:sign_in' %}">Sign in</a>
+</div>
+
+{% endblock %}

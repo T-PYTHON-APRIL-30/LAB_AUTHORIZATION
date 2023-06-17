@@ -1,0 +1,14 @@
+{%extends 'clinic_app/base.html'%}
+{% block title %} Search {% endblock%}
+
+{% block content%}
+<h1 style="text-align: center">Search Results</h1>
+
+{% for clinic in clinics %}
+<div style="text-align: center">
+    <h4 style="color: orangered"> {{ clinic.name }}</h4>
+    <a href="{% url 'clinic_app:clinic_details' clinic.id %}">Read more</a>
+</div>
+{% endfor %}
+
+{% endblock %}

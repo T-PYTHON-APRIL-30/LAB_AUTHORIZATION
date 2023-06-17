@@ -1,0 +1,27 @@
+{% extends 'clinic_app/base.html' %}
+{% block title %} Clinic Details {% endblock%}
+
+{% block content %}
+
+<div style="text-align: center">
+    <h1 style="text-align: center">Clinic Details</h1>
+
+    <div style="text-align: center">
+        <h4 style="color: orangered">{{ clinic.name }}</h4>
+        <label>Description</label><br>
+        <p>{{ clinic.description }}</p>
+        <label>Department</label><br>
+        <p>{{ clinic.department }}</p>
+        <label>Established at</label><br>
+        <p>{{ clinic.established_at }}</p>
+    </div>
+
+    <div>
+        {% if request.user.is_staff %}
+        <a href="{% url 'clinic_app:update_clinic' clinic.id %}">Update clinic</a><br>
+        {% endif %}
+        <a href="{% url 'clinic_app:appointment' clinic.id %}">Browse appointments</a><br>
+    </div>
+</div>
+
+{% endblock %}

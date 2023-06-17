@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <!-- Latest compiled and minified CSS -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div id="w">
+        <header id="topbar" class="clearfix">
+            <div id="logo">ClinicWebsite</div>
+
+            <nav id="topnav">
+                <ul>
+                    <li><a href="{% url 'clinic_app:home' %}">Home</a></li>
+                    <li><a href="{% url 'clinic_app:contact' %}">Contact</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'accounts:log_out' %}">Log out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'accounts:sign_in' %}">Sign in</a></li>
+                    <li><a href="{% url 'accounts:signup' %}">Sign up</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <div id="searchbar" class="clearfix">
+            <form action="{% url 'clinic_app:search' %}" method="GET" id="searchform">
+                <input type="search" name="search" id="s"  minlength="4" placeholder="Search keywords..." autocomplete="off">
+            </form>
+        </div>
+
+        <section id="fullimg"></section>
+
+        <div id="content">
+            <p><a href="https://unsplash.com/photos/U4FyCp3-KzY" target="_blank">original image source</a></p>
+            <h1>Clinic</h1>
+            <p>Clinic that provides various clinical specialties, with a focus on delivering an outstanding patient
+                experience.</p>
+        </div>
+
+        {% block content%}
+        {% endblock %}
+
+        <br><br><footer style="text-align: center"> Copyright &copy; 2023 </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{% extends 'clinic_app/base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center">Available Clinics</h1>
+
+{% if request.user.is_staff %}
+<div style="text-align: center; font-size: 150%;">
+    <a href="{% url 'clinic_app:add_clinic' %}">Add new clinic</a>
+</div>
+{% endif %}
+
+<div style="text-align: center">
+    {% for clinic in clinics %}
+    <br>
+    <h4 style="color: orangered">{{ clinic.name }}</h4>
+    <img src="{{ clinic.feature_image.url }}"/>
+    <br>
+    <label>Description</label><br>
+    <p>{{ clinic.description }}</p>
+    <label>Department</label><br>
+    <p>{{ clinic.department }}</p>
+    <label>Established at:</label><br>
+    <p>{{ clinic.established_at }}</p>
+    <div>
+        <a href="{% url 'clinic_app:clinic_details' clinic.id %}">details</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
